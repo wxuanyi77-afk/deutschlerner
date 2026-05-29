@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Deutschlerner</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a;background:#f5f5f3;min-height:100vh;font-size:14px;}
+input,select,textarea,button{font-family:inherit;font-size:14px;}
+input[type=text],input[type=password],select,textarea{width:100%;padding:7px 10px;border:1px solid #ddd;border-radius:8px;background:#fff;color:#1a1a1a;outline:none;}
+input:focus,select:focus,textarea:focus{border-color:#888;}
+textarea{min-height:52px;resize:vertical;}
+.nav{background:#fff;border-bottom:1px solid #e8e8e8;padding:0 1.25rem;display:flex;align-items:center;position:sticky;top:0;z-index:100;}
+.brand{font-size:15px;font-weight:600;padding:.875rem 0;margin-right:1.25rem;color:#1a1a1a;}
+.nt{padding:.875rem .7rem;font-size:13px;color:#666;cursor:pointer;border-bottom:2px solid transparent;border-left:none;border-right:none;border-top:none;background:none;transition:all .15s;white-space:nowrap;}
+.nt:hover{color:#1a1a1a;}.nt.on{color:#1a1a1a;border-bottom-color:#1a1a1a;font-weight:500;}
+.nsp{flex:1;}
+.lvb{background:#e8f0fd;color:#1a56db;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;}
+.main{max-width:820px;margin:0 auto;padding:1.25rem;}
+.view{display:none;}.view.on{display:block;}
+.card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:1.25rem;margin-bottom:1rem;}
+.btn{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;border:1px solid #ddd;background:#fff;color:#1a1a1a;}
+.btn:hover{background:#f5f5f3;}.btn:active{transform:scale(.98);}
+.btnp{background:#1a1a1a;color:#fff;border-color:#1a1a1a;}.btnp:hover{background:#333;}
+.btnp:disabled{opacity:.5;cursor:not-allowed;}
+.btns{padding:4px 10px;font-size:12px;}
+.brow{display:flex;gap:8px;flex-wrap:wrap;margin-top:.875rem;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.gf{grid-column:1/-1;}
+label{font-size:12px;color:#666;display:block;margin-bottom:4px;}
+.sth{display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem;}
+.stt{font-size:15px;font-weight:600;}
+.dv{height:1px;background:#e8e8e8;margin:.875rem 0;}
+.pill{display:inline-block;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:500;margin:1px;}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:1rem;}
+.sc{background:#f5f5f3;border-radius:10px;padding:.875rem;}
+.sl2{font-size:12px;color:#666;margin-bottom:3px;}.sv{font-size:22px;font-weight:600;}.ss{font-size:11px;color:#999;margin-top:2px;}
+.lm{display:flex;gap:3px;margin:6px 0;}.lms{height:5px;flex:1;border-radius:3px;background:#e8e8e8;}.lms.on{background:#1a1a1a;}
+/* word rows */
+.wr{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:.75rem 1rem;display:flex;align-items:center;gap:10px;cursor:pointer;transition:border-color .12s;margin-bottom:6px;position:relative;}
+.wr:hover{border-color:#bbb;}
+.ab{font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;flex-shrink:0;}
+.ader{background:#e8f0fd;color:#1a56db;}.adie{background:#fde8e8;color:#9b1c1c;}.adas{background:#e8f5e9;color:#1b5e20;}
+.av{background:#ede8fd;color:#4c1d95;}.aadj{background:#e8fdf0;color:#065f46;}.aadv{background:#fff8e1;color:#78350f;}
+.aconj{background:#fce7f3;color:#831843;}.aprep{background:#f0fdf4;color:#14532d;}.apron{background:#fef3c7;color:#92400e;}
+.anum{background:#f5f3ff;color:#4c1d95;}.apart{background:#e0f2fe;color:#0c4a6e;}.aintj{background:#fff1f2;color:#9f1239;}.anone{background:#f5f5f3;color:#666;}
+.wde{font-size:15px;font-weight:600;flex-shrink:0;min-width:90px;}.wfm{font-size:12px;color:#999;flex-shrink:0;}
+.wen{font-size:13px;color:#555;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.wrt{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.dots{display:flex;gap:3px;}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid #ccc;background:transparent;cursor:pointer;transition:all .12s;}
+.dot.d1{background:#639922;border-color:#639922;}.dot.d2{background:#BA7517;border-color:#BA7517;}.dot.d3{background:#E24B4A;border-color:#E24B4A;}.dot.d4{background:#993556;border-color:#993556;}.dot.d5{background:#3C3489;border-color:#3C3489;}
+.stb{font-size:10px;color:#999;}.dub{font-size:10px;color:#d97706;font-weight:500;}.dob{font-size:10px;background:#e8f5e9;color:#1b5e20;padding:2px 6px;border-radius:4px;font-weight:500;}
+/* tooltip */
+.tooltip{display:none;position:absolute;left:0;top:calc(100% + 5px);z-index:500;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:10px 13px;min-width:220px;max-width:320px;box-shadow:0 8px 24px rgba(0,0,0,.12);pointer-events:none;}
+.wr:hover .tooltip{display:block;}
+.tt-title{font-size:10px;font-weight:600;color:#999;letter-spacing:.06em;margin-bottom:6px;}
+.tt-group{margin-bottom:7px;}.tt-group:last-child{margin-bottom:0;}
+.tt-lbl{font-size:10px;color:#bbb;margin-bottom:3px;}
+.tt-word{display:inline-flex;align-items:center;gap:4px;background:#f5f5f3;border:1px solid #e8e8e8;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:500;margin:2px;cursor:pointer;pointer-events:all;}
+.tt-word:hover{background:#e8e8e8;}.tt-en{font-size:11px;color:#999;font-weight:400;}.tt-empty{font-size:12px;color:#bbb;font-style:italic;}
+/* misc */
+.pb{height:3px;background:#e8e8e8;border-radius:2px;margin:8px 0;}.pf{height:100%;background:#1a1a1a;border-radius:2px;transition:width .3s;}
+.fcw{perspective:1000px;height:210px;margin:1rem 0;}.fc{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s;cursor:pointer;}.fc.flip{transform:rotateY(180deg);}
+.fff{position:absolute;width:100%;height:100%;backface-visibility:hidden;background:#fff;border:1px solid #e8e8e8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;}.ffb{transform:rotateY(180deg);}
+.qo{background:#fff;border:1px solid #e8e8e8;border-radius:10px;padding:.75rem 1rem;font-size:14px;cursor:pointer;transition:all .12s;text-align:left;width:100%;margin-bottom:7px;display:block;}
+.qo:hover{background:#f5f5f3;}.qo.ok{background:#e8f5e9;border-color:#4caf50;color:#1b5e20;}.qo.no{background:#fde8e8;border-color:#ef5350;color:#9b1c1c;}
+.ct{width:100%;border-collapse:collapse;font-size:13px;}.ct td{padding:5px 8px;border:1px solid #e8e8e8;}.ct td:first-child{color:#666;width:75px;}.ct tr:nth-child(odd) td{background:#f9f9f9;}
+.nc{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}.cc{background:#f5f5f3;border-radius:8px;padding:6px 8px;}.cn{font-size:10px;color:#999;margin-bottom:1px;}.cv{font-size:12px;font-weight:600;}
+.lab{font-size:10px;font-weight:600;color:#999;letter-spacing:.06em;margin-bottom:5px;}
+.gb{border-radius:8px;padding:8px 10px;margin-bottom:6px;}.pi{display:flex;align-items:baseline;gap:8px;font-size:13px;margin-bottom:5px;}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;overflow-y:auto;padding:50px 1rem 2rem;}
+.ov.on{display:block;}.ovb{background:#fff;border-radius:14px;padding:1.5rem;max-width:560px;margin:0 auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.15);}
+.ovc{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:18px;cursor:pointer;color:#999;padding:4px;}.ovc:hover{color:#1a1a1a;}
+.emp{text-align:center;padding:2.5rem 1rem;color:#999;font-size:14px;}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid #e8e8e8;border-top-color:#1a1a1a;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
+@keyframes spin{to{transform:rotate(360deg);}}
+details summary{cursor:pointer;font-size:13px;color:#666;padding:.5rem 0;user-select:none;}
+code{background:#f5f5f3;padding:2px 6px;border-radius:4px;font-size:12px;font-family:monospace;}
+/* startup screen */
+.startup{position:fixed;inset:0;background:#f5f5f3;z-index:999;display:flex;align-items:center;justify-content:center;}
+.startup-box{background:#fff;border-radius:16px;padding:2rem;max-width:420px;width:90%;box-shadow:0 8px 40px rgba(0,0,0,.1);text-align:center;}
+.startup-box h2{font-size:20px;margin-bottom:.5rem;}
+.startup-box p{font-size:13px;color:#666;margin-bottom:1.5rem;line-height:1.6;}
+.drop-zone{border:2px dashed #ddd;border-radius:10px;padding:2rem;cursor:pointer;transition:all .2s;margin-bottom:1rem;}
+.drop-zone:hover,.drop-zone.drag{border-color:#1a56db;background:#f0f4ff;}
+.drop-zone p{font-size:13px;color:#666;margin:.25rem 0;}
+
+/* READ MODULE */
+.article-body{font-size:16px;line-height:1.85;color:#1a1a1a;font-family:Georgia,'Times New Roman',serif;}
+.article-body p{margin-bottom:1rem;}
+.rword{cursor:pointer;border-radius:3px;padding:0 1px;transition:background .1s;display:inline;}
+.rword:hover{background:#e8f0fd;}
+.rword.known{color:#1b5e20;}
+.rword.saving{background:#fff8e1;}
+
+/* word popup */
+.wpop{position:fixed;z-index:600;background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1rem;width:280px;box-shadow:0 8px 32px rgba(0,0,0,.15);display:none;}
+.wpop.show{display:block;}
+.wpop-word{font-size:18px;font-weight:700;margin-bottom:2px;}
+.wpop-pos{font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;display:inline-block;margin-bottom:8px;}
+.wpop-en{font-size:14px;color:#333;margin-bottom:6px;}
+.wpop-ex{font-size:12px;color:#666;font-style:italic;margin-bottom:10px;padding-top:6px;border-top:1px solid #f0f0f0;}
+.wpop-btns{display:flex;gap:6px;}
+.wpop-close{position:absolute;top:8px;right:10px;background:none;border:none;font-size:16px;cursor:pointer;color:#999;line-height:1;}
+
+/* audio player */
+.audio-player{background:#f5f5f3;border-radius:10px;padding:.75rem 1rem;display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.audio-player audio{display:none;}
+.play-btn{width:36px;height:36px;border-radius:50%;background:#1a1a1a;color:#fff;border:none;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.play-btn:hover{background:#333;}
+.audio-prog-wrap{flex:1;height:4px;background:#ddd;border-radius:2px;cursor:pointer;position:relative;}
+.audio-prog{height:100%;background:#1a1a1a;border-radius:2px;width:0%;transition:width .1s linear;}
+.audio-time{font-size:12px;color:#666;white-space:nowrap;min-width:70px;text-align:right;}
+.speed-btn{font-size:12px;font-weight:600;color:#666;background:#fff;border:1px solid #ddd;border-radius:6px;padding:3px 8px;cursor:pointer;}
+.speed-btn:hover{background:#f5f5f3;}
+
+/* shadowing panel */
+.shadow-panel{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:1rem;margin-bottom:1rem;}
+.shadow-sentence{background:#f9f9f9;border-radius:8px;padding:.75rem 1rem;font-size:15px;font-family:Georgia,serif;line-height:1.7;margin-bottom:.75rem;border-left:3px solid #1a1a1a;}
+.rec-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;border:2px solid #1a1a1a;background:#fff;color:#1a1a1a;}
+.rec-btn.recording{background:#e53e3e;border-color:#e53e3e;color:#fff;animation:pulse-rec 1s infinite;}
+.rec-btn .rec-dot{width:8px;height:8px;border-radius:50%;background:currentColor;}
+@keyframes pulse-rec{0%,100%{opacity:1;}50%{opacity:.7;}}
+.playback-row{display:flex;align-items:center;gap:8px;margin-top:.75rem;padding-top:.75rem;border-top:1px solid #f0f0f0;}
+
+/* stats bar */
+.read-stats{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;}
+.read-stat{background:#fff;border:1px solid #e8e8e8;border-radius:8px;padding:6px 12px;font-size:12px;color:#666;}
+.read-stat strong{color:#1a1a1a;}
+
+/* NOTES MODULE */
+.notes-list{display:flex;flex-direction:column;gap:10px;}
+.note-card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:1.125rem 1.25rem;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+.note-card:hover{border-color:#bbb;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.note-card-title{font-size:15px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.note-card-meta{font-size:11px;color:#999;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.note-card-preview{font-size:13px;color:#555;line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.note-tag{display:inline-block;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:500;background:#f0f4ff;color:#1a56db;border:1px solid #d0e0ff;}
+
+/* Editor */
+.editor-wrap{position:fixed;inset:0;background:#f5f5f3;z-index:300;display:flex;flex-direction:column;overflow:hidden;}
+.editor-nav{background:#fff;border-bottom:1px solid #e8e8e8;padding:.6rem 1rem;display:flex;align-items:center;gap:8px;}
+.editor-title-inp{font-size:16px;font-weight:600;border:none;outline:none;flex:1;background:transparent;min-width:0;}
+.editor-title-inp::placeholder{color:#bbb;}
+.toolbar{background:#fff;border-bottom:1px solid #e8e8e8;padding:.4rem .75rem;display:flex;align-items:center;gap:2px;flex-wrap:wrap;}
+.tb-btn{width:30px;height:28px;border:none;background:none;border-radius:6px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;color:#444;transition:background .1s;}
+.tb-btn:hover{background:#f0f0f0;}
+.tb-btn.active{background:#e8e8e8;}
+.tb-sep{width:1px;height:18px;background:#e8e8e8;margin:0 4px;}
+.tb-select{font-size:12px;border:1px solid #ddd;border-radius:6px;padding:2px 6px;background:#fff;color:#444;cursor:pointer;height:28px;}
+.editor-body{flex:1;overflow-y:auto;padding:1.5rem;max-width:740px;margin:0 auto;width:100%;}
+.editor-content{min-height:calc(100vh - 200px);outline:none;font-size:15px;line-height:1.85;color:#1a1a1a;font-family:Georgia,'Times New Roman',serif;}
+.editor-content h1{font-size:22px;font-weight:700;margin:1rem 0 .5rem;}
+.editor-content h2{font-size:18px;font-weight:700;margin:.875rem 0 .4rem;}
+.editor-content h3{font-size:15px;font-weight:700;margin:.75rem 0 .3rem;}
+.editor-content p{margin-bottom:.75rem;}
+.editor-content ul,.editor-content ol{padding-left:1.5rem;margin-bottom:.75rem;}
+.editor-content li{margin-bottom:.25rem;}
+.editor-content blockquote{border-left:3px solid #1a1a1a;padding:.5rem 1rem;margin:.75rem 0;background:#f9f9f9;border-radius:0 8px 8px 0;font-style:italic;color:#555;}
+.editor-content img{max-width:100%;border-radius:8px;margin:.5rem 0;display:block;}
+.editor-content a{color:#1a56db;text-decoration:underline;}
+.editor-content hr{border:none;border-top:1px solid #e8e8e8;margin:1rem 0;}
+.editor-content mark{background:#fff8c5;padding:1px 2px;border-radius:2px;}
+.editor-footer{background:#fff;border-top:1px solid #e8e8e8;padding:.5rem 1rem;display:flex;align-items:center;gap:10px;font-size:12px;color:#999;}
+.tag-inp-small{border:1px solid #ddd;border-radius:6px;padding:3px 8px;font-size:12px;width:120px;outline:none;}
+.tag-inp-small:focus{border-color:#888;}
+.note-tag-rm{cursor:pointer;color:#bbb;margin-left:2px;font-size:13px;line-height:1;}
+.note-tag-rm:hover{color:#e53e3e;}
+</style>
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div class="startup" id="startup">
+  <div class="startup-box">
+    <div style="font-size:36px;margin-bottom:.5rem;">📖</div>
+    <h2>Deutschlerner</h2>
+    <p id="auth-subtitle">Sign in to access your vocabulary and notes from any device.</p>
+
+    <!-- LOGIN PANEL -->
+    <div id="auth-login-panel">
+      <div class="fg" style="margin-bottom:.75rem;text-align:left;">
+        <label>Email</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" onkeydown="if(event.key==='Enter')authLogin()"/>
+      </div>
+      <div class="fg" style="margin-bottom:1rem;text-align:left;">
+        <label>Password</label>
+        <input type="password" id="auth-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')authLogin()"/>
+      </div>
+      <button class="btn btnp" style="width:100%;padding:10px;margin-bottom:.75rem;" onclick="authLogin()">Sign in</button>
+      <button class="btn" style="width:100%;padding:8px;margin-bottom:.75rem;" onclick="showAuthPanel('register')">Create account</button>
+      <div id="auth-status" style="font-size:13px;min-height:20px;margin-top:.5rem;"></div>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div id="auth-register-panel" style="display:none;">
+      <div class="fg" style="margin-bottom:.75rem;text-align:left;">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="you@example.com"/>
+      </div>
+      <div class="fg" style="margin-bottom:.75rem;text-align:left;">
+        <label>Password <span style="color:#999;font-weight:400;">(min 6 characters)</span></label>
+        <input type="password" id="reg-password" placeholder="••••••••"/>
+      </div>
+      <div class="fg" style="margin-bottom:1rem;text-align:left;">
+        <label>Confirm password</label>
+        <input type="password" id="reg-password2" placeholder="••••••••" onkeydown="if(event.key==='Enter')authRegister()"/>
+      </div>
+      <button class="btn btnp" style="width:100%;padding:10px;margin-bottom:.75rem;" onclick="authRegister()">Create account</button>
+      <button class="btn" style="width:100%;padding:8px;margin-bottom:.75rem;" onclick="showAuthPanel('login')">← Back to sign in</button>
+      <div id="reg-status" style="font-size:13px;min-height:20px;margin-top:.5rem;"></div>
+    </div>
+
+    <!-- LOADING PANEL -->
+    <div id="auth-loading-panel" style="display:none;padding:1.5rem 0;">
+      <div class="spin" style="margin:0 auto 1rem;width:24px;height:24px;border-width:3px;"></div>
+      <div id="auth-loading-msg" style="font-size:13px;color:#666;">Signing in...</div>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="brand">📖 Deutschlerner</div>
+  <button class="nt on" onclick="gv('home',this)">Overview</button>
+  <button class="nt" onclick="gv('add',this)">Add Word</button>
+  <button class="nt" onclick="gv('review',this)">Flashcards</button>
+  <button class="nt" onclick="gv('quiz',this)">Quiz</button>
+  <button class="nt" onclick="gv('words',this)">Vocabulary</button>
+  <button class="nt" onclick="gv('read',this)">📰 Read</button>
+  <button class="nt" onclick="gv('notes',this)">📝 Notes</button>
+  <div class="nsp"></div>
+  <button class="nt" onclick="gv('settings',this)" style="font-size:12px;">⚙ Settings</button>
+  <div id="nav-user" style="font-size:12px;color:#666;padding:0 .5rem;display:flex;align-items:center;gap:6px;">
+    <span id="nav-email" style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+    <button class="btn btns" onclick="authSignOut()" style="font-size:11px;padding:3px 8px;">Sign out</button>
+  </div>
+  <span class="lvb" id="lvb">A1</span>
+</nav>
+
+<div class="main">
+
+<!-- HOME -->
+<div class="view on" id="view-home">
+  <div id="due-alert"></div>
+  <!-- save reminder -->
+  <div id="save-banner" style="display:none;background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
+    <span style="font-size:16px;">💾</span>
+    <span style="font-size:13px;flex:1;">You have unsaved changes — <strong id="unsaved-count">0</strong> new word(s) added this session</span>
+    <button class="btn btns btnp" onclick="saveJSON()">Save word list now</button>
+  </div>
+  <div class="sg">
+    <div class="sc"><div class="sl2">Vocabulary</div><div class="sv" id="s-tot">0</div><div class="ss">words</div></div>
+    <div class="sc"><div class="sl2">Due today</div><div class="sv" id="s-due">0</div><div class="ss">cards</div></div>
+    <div class="sc"><div class="sl2">Mastered</div><div class="sv" id="s-mas">0</div><div class="ss">complete</div></div>
+    <div class="sc"><div class="sl2">Watch out</div><div class="sv" id="s-hrd">0</div><div class="ss">marked 3+</div></div>
+  </div>
+  <div class="card">
+    <div class="sth"><div class="stt">Level estimate</div><span id="lv-desc" style="font-size:12px;color:#666;"></span></div>
+    <div class="lm" id="lm"></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#999;margin-top:3px;"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
+  </div>
+  <div class="card"><div class="sth"><div class="stt">Recent words</div></div><div id="home-rec"></div></div>
+</div>
+
+<!-- ADD -->
+<div class="view" id="view-add">
+  <div class="card">
+    <div class="sth"><div class="stt">Look up a word</div><div id="api-indicator" style="font-size:12px;color:#999;"></div></div>
+    <div style="display:flex;gap:8px;">
+      <input type="text" id="lookup-inp" placeholder="Any German word — noun, verb, adj, adv, conj, prep..." onkeydown="if(event.key==='Enter')doLookup()" style="flex:1;"/>
+      <button class="btn btnp" id="lookup-btn" onclick="doLookup()">✨ Generate card</button>
+    </div>
+    <div id="lookup-status" style="display:flex;align-items:center;gap:8px;font-size:13px;color:#666;margin-top:10px;min-height:20px;"></div>
+  </div>
+  <div id="pending-area" style="display:none;">
+    <div style="border:2px solid #1a56db;border-radius:12px;padding:1.25rem;margin-bottom:1rem;background:#fff;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.875rem;border-bottom:1px solid #e8e8e8;">
+        <div><div style="font-size:13px;font-weight:600;color:#1a56db;">✓ Card ready — review and save</div>
+        <div style="font-size:12px;color:#666;margin-top:2px;">Add a note, then click Save</div></div>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btns btnp" onclick="savePending()">+ Save to word list</button>
+          <button class="btn btns" onclick="discardPending()">Discard</button>
+        </div>
+      </div>
+      <div id="pending-preview"></div>
+      <div class="dv"></div>
+      <div class="fg"><label>Personal note (optional)</label><textarea id="pending-note" placeholder="Mnemonics, context, memory hooks..."></textarea></div>
+    </div>
+  </div>
+  <details style="margin-bottom:1rem;">
+    <summary>Add manually (without AI)</summary>
+    <div class="card" style="margin-top:.5rem;">
+      <div class="g2">
+        <div class="fg"><label>German word *</label><input type="text" id="m-word" placeholder="e.g. bestehen"/></div>
+        <div class="fg"><label>Part of speech</label>
+          <select id="m-pos">
+            <option value="noun">Noun (Nomen)</option><option value="verb">Verb</option>
+            <option value="adj">Adjective (Adjektiv)</option><option value="adv">Adverb</option>
+            <option value="conj">Conjunction (Konjunktion)</option><option value="prep">Preposition (Präposition)</option>
+            <option value="pron">Pronoun (Pronomen)</option><option value="num">Numeral</option>
+            <option value="part">Particle (Partikel)</option><option value="intj">Interjection</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="fg"><label>Article (nouns)</label><select id="m-art"><option value="">none</option><option value="der">der</option><option value="die">die</option><option value="das">das</option></select></div>
+        <div class="fg"><label>English meaning *</label><input type="text" id="m-en" placeholder="main meaning"/></div>
+        <div class="fg gf"><label>Note</label><textarea id="m-note" placeholder="mnemonics..."></textarea></div>
+      </div>
+      <div class="brow">
+        <button class="btn btnp" onclick="addManual()">Save</button>
+        <button class="btn btns" onclick="clearManual()">Clear</button>
+      </div>
+      <div id="m-msg" style="margin-top:8px;font-size:13px;"></div>
+    </div>
+  </details>
+</div>
+
+<div class="view" id="view-review"><div id="review-c"></div></div>
+<div class="view" id="view-quiz"><div id="quiz-c"></div></div>
+
+<!-- WORDS -->
+<div class="view" id="view-words">
+  <div style="display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;">
+    <input type="text" id="s-inp" placeholder="Search..." style="flex:1;min-width:100px;" oninput="renderWords()"/>
+    <select id="f-diff" onchange="renderWords()" style="width:auto;">
+      <option value="">All difficulty</option><option value="0">No mark</option><option value="1">● Unsure</option>
+      <option value="2">●● Hard</option><option value="3">●●● Forgetting</option><option value="4">●●●● Very hard</option><option value="5">●●●●● Hardest</option>
+    </select>
+    <select id="f-pos" onchange="renderWords()" style="width:auto;">
+      <option value="">All types</option><option value="noun">Noun</option><option value="verb">Verb</option>
+      <option value="adj">Adjective</option><option value="adv">Adverb</option><option value="conj">Conjunction</option><option value="prep">Preposition</option>
+    </select>
+  </div>
+  <div style="font-size:12px;color:#999;margin-bottom:.75rem;">Hover over a word to see related words from your vocabulary</div>
+  <div id="words-list"></div>
+</div>
+
+<!-- READ -->
+<div class="view" id="view-read">
+
+  <!-- Source input -->
+  <div class="card" id="read-input-card">
+    <div class="sth"><div class="stt">📰 Read & Listen</div><div style="font-size:12px;color:#666;">Paste a Tagesschau article to read, click words to look them up</div></div>
+
+    <div style="margin-bottom:.75rem;">
+      <label>Paste article text</label>
+      <textarea id="read-text-inp" style="min-height:100px;font-family:Georgia,serif;font-size:14px;" placeholder="Paste any German text here — Tagesschau article, news excerpt, anything..."></textarea>
+    </div>
+    <div class="g2" style="margin-bottom:.75rem;">
+      <div class="fg">
+        <label>Audio URL (optional)</label>
+        <input type="text" id="read-audio-url" placeholder="https://...mp3 or .m4a from Tagesschau"/>
+      </div>
+      <div class="fg">
+        <label>Article title (optional)</label>
+        <input type="text" id="read-title-inp" placeholder="e.g. Bundesrat stimmt zu..."/>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn btnp" onclick="loadArticle()">Load article →</button>
+      <button class="btn btns" onclick="loadSample()">Load sample text</button>
+    </div>
+  </div>
+
+  <!-- Article view (hidden until loaded) -->
+  <div id="read-article" style="display:none;">
+
+    <!-- Back + stats -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:1rem;">
+      <button class="btn btns" onclick="document.getElementById('read-input-card').style.display='';document.getElementById('read-article').style.display='none';">← New article</button>
+      <div id="read-title-display" style="font-size:15px;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+    </div>
+
+    <div class="read-stats" id="read-stats"></div>
+
+    <!-- Audio player -->
+    <div class="audio-player" id="audio-player" style="display:none;">
+      <audio id="main-audio" preload="metadata"></audio>
+      <button class="play-btn" id="play-btn" onclick="togglePlay()">▶</button>
+      <div class="audio-prog-wrap" id="prog-wrap" onclick="seekAudio(event)">
+        <div class="audio-prog" id="audio-prog"></div>
+      </div>
+      <span class="audio-time" id="audio-time">0:00 / 0:00</span>
+      <button class="speed-btn" id="speed-btn" onclick="cycleSpeed()">1×</button>
+    </div>
+
+    <!-- Shadowing panel -->
+    <div class="shadow-panel" id="shadow-panel" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;">
+        <div style="font-size:13px;font-weight:600;">🎙 Shadowing mode</div>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <button class="btn btns" onclick="prevShadowSentence()">← Prev</button>
+          <span id="shadow-idx" style="font-size:12px;color:#666;"></span>
+          <button class="btn btns" onclick="nextShadowSentence()">Next →</button>
+        </div>
+      </div>
+      <div class="shadow-sentence" id="shadow-sentence-text"></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <button class="rec-btn" id="rec-btn" onclick="toggleRecording()">
+          <span class="rec-dot"></span><span id="rec-label">Record</span>
+        </button>
+        <button class="btn btns" id="play-original-btn" onclick="playOriginalSegment()" style="display:none;">▶ Play original</button>
+        <span id="rec-status" style="font-size:12px;color:#999;"></span>
+      </div>
+      <div class="playback-row" id="playback-row" style="display:none;">
+        <span style="font-size:12px;color:#666;">Your recording:</span>
+        <audio id="playback-audio" controls style="flex:1;height:32px;"></audio>
+        <button class="btn btns" onclick="clearRecording()">Clear</button>
+      </div>
+    </div>
+
+    <!-- Shadowing toggle -->
+    <div style="display:flex;gap:8px;margin-bottom:1rem;">
+      <button class="btn btns" id="shadow-toggle-btn" onclick="toggleShadowMode()">🎙 Enter shadowing mode</button>
+      <div style="font-size:12px;color:#999;align-self:center;">Click any word to look it up · <span style="color:#1b5e20;">green</span> = already in your vocabulary</div>
+    </div>
+
+    <!-- Article text -->
+    <div class="card">
+      <div class="article-body" id="article-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Word popup (shared) -->
+<div class="wpop" id="wpop">
+  <button class="wpop-close" onclick="closeWpop()">✕</button>
+  <div class="wpop-word" id="wpop-word"></div>
+  <span class="wpop-pos" id="wpop-pos"></span>
+  <div class="wpop-en" id="wpop-en"></div>
+  <div class="wpop-ex" id="wpop-ex" style="display:none;"></div>
+  <div class="wpop-btns" id="wpop-btns"></div>
+</div>
+
+<div class="view" id="view-notes">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:1rem;flex-wrap:wrap;">
+    <div style="font-size:15px;font-weight:600;flex:1;">My Notes</div>
+    <input type="text" id="notes-search" placeholder="Search notes..." style="width:180px;" oninput="renderNotes()"/>
+    <select id="notes-filter-tag" onchange="renderNotes()" style="width:auto;font-size:13px;">
+      <option value="">All tags</option>
+    </select>
+    <button class="btn btnp" onclick="newNote()">+ New note</button>
+  </div>
+  <div id="notes-list-el"></div>
+</div>
+
+<!-- EDITOR OVERLAY -->
+<div class="editor-wrap" id="editor-wrap" style="display:none;">
+  <div class="editor-nav">
+    <button class="btn btns" onclick="closeEditor()">← Back</button>
+    <input class="editor-title-inp" id="editor-title" placeholder="Note title..." />
+    <button class="btn btns btnp" onclick="saveNote()">Save</button>
+    <button class="btn btns" id="editor-delete-btn" onclick="deleteCurrentNote()" style="color:#e53e3e;display:none;">Delete</button>
+  </div>
+
+  <div class="toolbar">
+    <!-- Text style -->
+    <select class="tb-select" onchange="execCmd('formatBlock',this.value);this.value='p'" id="block-sel">
+      <option value="p">Paragraph</option>
+      <option value="h1">Heading 1</option>
+      <option value="h2">Heading 2</option>
+      <option value="h3">Heading 3</option>
+      <option value="blockquote">Quote</option>
+    </select>
+    <div class="tb-sep"></div>
+    <button class="tb-btn" title="Bold" onclick="execCmd('bold')"><strong>B</strong></button>
+    <button class="tb-btn" title="Italic" onclick="execCmd('italic')"><em>I</em></button>
+    <button class="tb-btn" title="Underline" onclick="execCmd('underline')" style="text-decoration:underline;">U</button>
+    <button class="tb-btn" title="Strikethrough" onclick="execCmd('strikeThrough')" style="text-decoration:line-through;">S</button>
+    <button class="tb-btn" title="Highlight" onclick="execCmd('hiliteColor','#fff8c5')" style="background:#fff8c5;">H</button>
+    <div class="tb-sep"></div>
+    <!-- Lists -->
+    <button class="tb-btn" title="Bullet list" onclick="execCmd('insertUnorderedList')">≡</button>
+    <button class="tb-btn" title="Numbered list" onclick="execCmd('insertOrderedList')">1≡</button>
+    <div class="tb-sep"></div>
+    <!-- Align -->
+    <button class="tb-btn" title="Align left" onclick="execCmd('justifyLeft')">◧</button>
+    <button class="tb-btn" title="Center" onclick="execCmd('justifyCenter')">◈</button>
+    <button class="tb-btn" title="Align right" onclick="execCmd('justifyRight')">◨</button>
+    <div class="tb-sep"></div>
+    <!-- Insert -->
+    <button class="tb-btn" title="Insert image" onclick="insertImage()" style="font-size:14px;">🖼</button>
+    <button class="tb-btn" title="Insert link" onclick="insertLink()" style="font-size:14px;">🔗</button>
+    <button class="tb-btn" title="Horizontal rule" onclick="execCmd('insertHorizontalRule')">—</button>
+    <div class="tb-sep"></div>
+    <!-- Undo/redo -->
+    <button class="tb-btn" title="Undo" onclick="execCmd('undo')">↩</button>
+    <button class="tb-btn" title="Redo" onclick="execCmd('redo')">↪</button>
+    <div class="tb-sep"></div>
+    <select class="tb-select" title="Text color" onchange="execCmd('foreColor',this.value)" style="width:70px;">
+      <option value="#1a1a1a">● Black</option>
+      <option value="#e53e3e">● Red</option>
+      <option value="#1a56db">● Blue</option>
+      <option value="#1b5e20">● Green</option>
+      <option value="#78350f">● Brown</option>
+      <option value="#4c1d95">● Purple</option>
+      <option value="#666">● Gray</option>
+    </select>
+  </div>
+
+  <div class="editor-body">
+    <div class="editor-content" id="editor-content" contenteditable="true"
+      data-placeholder="Write your German notes here... Hier auf Deutsch schreiben..."></div>
+  </div>
+
+  <div class="editor-footer">
+    <span id="editor-wordcount">0 words</span>
+    <span id="editor-date" style="margin-left:auto;"></span>
+    <div class="tb-sep" style="height:14px;"></div>
+    <span style="color:#666;">Tags:</span>
+    <div id="editor-tags-display" style="display:flex;gap:4px;flex-wrap:wrap;align-items:center;"></div>
+    <input class="tag-inp-small" id="editor-tag-inp" placeholder="Add tag…" onkeydown="handleTagKey(event)"/>
+  </div>
+</div>
+
+<!-- hidden image file input -->
+<input type="file" id="img-file-inp" accept="image/*" style="display:none;" onchange="handleImageFile(event)"/>
+
+<div class="view" id="view-settings">
+  <!-- SUPABASE ACCOUNT CARD -->
+  <div class="card">
+    <div class="sth">
+      <div class="stt">☁️ Account & Sync</div>
+      <div id="gist-status-badge" style="font-size:12px;color:#999;"></div>
+    </div>
+    <div id="account-info" style="font-size:13px;color:#555;margin-bottom:.875rem;"></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btns" onclick="syncToGist()">⬆ Push to cloud</button>
+      <button class="btn btns" onclick="syncFromGist()">⬇ Pull from cloud</button>
+      <button class="btn btns" onclick="authSignOut()" style="color:#e53e3e;">Sign out</button>
+    </div>
+    <div id="gist-last-sync" style="font-size:11px;color:#999;margin-top:.5rem;"></div>
+    <div id="gist-info-panel" style="display:none;"></div>
+  </div>
+
+  <div class="card">
+    <div class="sth"><div class="stt">💾 Local File Backup</div></div>
+    <p style="font-size:13px;color:#666;margin-bottom:1rem;">Manual backup — download a local copy anytime.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;">
+      <button class="btn btnp" onclick="saveJSON()">💾 Download .json backup</button>
+      <button class="btn" onclick="document.getElementById('load-file2').click()">📂 Load from file</button>
+      <input type="file" id="load-file2" accept=".json" style="display:none;" onchange="loadFromFile(event)"/>
+    </div>
+    <div class="dv"></div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:.75rem;">Export</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn" onclick="exportExcel()">📊 Excel (.xlsx)</button>
+      <button class="btn" onclick="exportCSV()">📄 CSV</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sth"><div class="stt">🔌 AI Connection</div></div>
+    <div style="display:flex;gap:0;margin-bottom:1.25rem;border:1px solid #ddd;border-radius:8px;overflow:hidden;">
+      <button id="mode-btn-direct" onclick="setApiMode('direct')"
+        style="flex:1;padding:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .15s;background:#1a1a1a;color:#fff;">
+        🔑 My own key
+      </button>
+      <button id="mode-btn-proxy" onclick="setApiMode('proxy')"
+        style="flex:1;padding:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .15s;background:#fff;color:#666;">
+        🔐 Shared proxy
+      </button>
+    </div>
+    <div id="settings-direct-panel">
+      <div class="fg" style="margin-bottom:.75rem;">
+        <label>DeepSeek API key</label>
+        <input type="password" id="key-input" placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxx" style="font-family:monospace;"/>
+      </div>
+      <div class="g2" style="margin-bottom:.75rem;">
+        <div class="fg"><label>Endpoint</label><input type="text" id="endpoint-input" placeholder="https://api.deepseek.com/v1/chat/completions"/></div>
+        <div class="fg"><label>Model</label><input type="text" id="model-input" placeholder="deepseek-chat"/></div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btnp" onclick="saveDirectSettings()">Save</button>
+        <button class="btn btns btnp" onclick="testConnection()">⚡ Test</button>
+        <button class="btn btns" onclick="clearDirectSettings()" style="color:#e53e3e;">Clear</button>
+      </div>
+      <details style="margin-top:.875rem;">
+        <summary>How to get a DeepSeek key</summary>
+        <ol style="font-size:13px;color:#555;line-height:2.2;padding-left:1.25rem;margin-top:.5rem;">
+          <li>Visit <strong>platform.deepseek.com</strong> and sign up</li>
+          <li>Top-up $2–5 (lasts months)</li>
+          <li><strong>API Keys → Create new secret key</strong></li>
+          <li>Copy <code>sk-...</code> and paste above</li>
+        </ol>
+      </details>
+    </div>
+    <div id="settings-proxy-panel" style="display:none;">
+      <div class="fg" style="margin-bottom:.75rem;">
+        <label>Proxy URL</label>
+        <input type="text" id="proxy-url-input" placeholder="https://your-worker.workers.dev"/>
+      </div>
+      <div class="fg" style="margin-bottom:.75rem;">
+        <label>Access token</label>
+        <input type="password" id="proxy-token-input" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" style="font-family:monospace;"/>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btnp" onclick="saveProxySettings()">Save</button>
+        <button class="btn btns btnp" onclick="testConnection()">⚡ Test</button>
+        <button class="btn btns" onclick="clearProxySettings()" style="color:#e53e3e;">Clear</button>
+      </div>
+    </div>
+    <div id="key-status" style="font-size:13px;margin-top:.75rem;min-height:18px;"></div>
+    <div id="test-result" style="font-size:13px;margin-top:.25rem;min-height:18px;"></div>
+  </div>
+</div>
+
+<div class="ov" id="ov"><div class="ovb"><button class="ovc" onclick="closeOv()">✕</button><div id="ov-content"></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+// ===================== CONFIG =====================
+const STAGES=[1,3,7,14,21,30,60,90];
+const LV_TH=[0,15,50,120,250,500];
+const LV_NM=['A1','A1','A2','B1','B2','C1','C2'];
+const DC=['','#639922','#BA7517','#E24B4A','#993556','#3C3489'];
+const DL=['none','unsure','hard','keeps slipping','very hard','hardest'];
+const POS_META={
+  noun:{label:'Noun',cls:'ader',short:'N'},verb:{label:'Verb',cls:'av',short:'V'},
+  adj:{label:'Adj.',cls:'aadj',short:'Adj'},adv:{label:'Adv.',cls:'aadv',short:'Adv'},
+  conj:{label:'Conj.',cls:'aconj',short:'Conj'},prep:{label:'Prep.',cls:'aprep',short:'Prep'},
+  pron:{label:'Pron.',cls:'apron',short:'Pron'},num:{label:'Num.',cls:'anum',short:'Num'},
+  part:{label:'Part.',cls:'apart',short:'Part'},intj:{label:'Interj.',cls:'aintj',short:'Intj'},
+  other:{label:'Other',cls:'anone',short:'—'},
+};
+
+// ===================== STATE =====================
+let db={words:[]};
+let pending=null;
+let fcDue=[],fcIdx=0,qState=null;
+let unsavedCount=0;
+
+// ===================== FILE I/O =====================
+function loadFromFile(evt){
+  const file=(evt.target||evt).files[0];
+  if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      if(!Array.isArray(data.words))throw new Error('Invalid format');
+      db=data;
+      if(!db.notes) db.notes=[];
+      unsavedCount=0;
+      hideStartup();
+      renderHome();
+      gv('home',document.querySelector('.nt'));
+      showToast('Loaded '+db.words.length+' words from '+file.name);
+    }catch(err){alert('Could not load file: '+err.message);}
+  };
+  r.readAsText(file);
+}
+
+function startFresh(){
+  db={words:[],notes:[]};
+  unsavedCount=0;
+}
+
+function hideStartup(){
+  document.getElementById('startup').style.display='none';
+}
+
+function saveJSON(){
+  const filename='Deutschlerner_'+new Date().toISOString().slice(0,10)+'.json';
+  const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.click();
+  unsavedCount=0;
+  updateSaveBanner();
+  showToast('Saved as '+filename);
+}
+
+function exportCSV(){
+  const rows=[['Word','POS','Article','Plural','English Meaning','Example','Note','Stage','Mastered','Difficulty','Synonyms','Antonyms','Related','Date Added']];
+  db.words.forEach(w=>{
+    rows.push([
+      w.word,w.pos||'',w.article||'',
+      (w.dictData&&w.dictData.noun_info&&w.dictData.noun_info.plural)||'',
+      w.en,w.example||'',w.note||'',
+      w.stage||0,w.mastered?'yes':'no',w.diff||0,
+      (w.synonyms||[]).join('; '),(w.antonyms||[]).join('; '),(w.related||[]).join('; '),
+      w.addedAt?new Date(w.addedAt).toLocaleDateString('en'):''
+    ]);
+  });
+  const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Deutschlerner_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+
+function exportExcel(){
+  // Build a simple XLSX using the Office Open XML spec (no library needed for basic tables)
+  const rows=[['Word','POS','Article','Plural','English Meaning','Example','Note','Stage','Mastered','Difficulty','Synonyms','Antonyms','Related','Date Added']];
+  db.words.forEach(w=>{
+    rows.push([
+      w.word,w.pos||'',w.article||'',
+      (w.dictData&&w.dictData.noun_info&&w.dictData.noun_info.plural)||'',
+      w.en,w.example||'',w.note||'',
+      w.stage||0,w.mastered?'yes':'no',w.diff||0,
+      (w.synonyms||[]).join('; '),(w.antonyms||[]).join('; '),(w.related||[]).join('; '),
+      w.addedAt?new Date(w.addedAt).toLocaleDateString('en'):''
+    ]);
+  });
+
+  // Minimal XLSX (XML-based, no compression, works in Excel/Numbers/Google Sheets)
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const sharedStrings=[];const ssMap={};
+  function sid(val){const k=String(val);if(k in ssMap)return ssMap[k];ssMap[k]=sharedStrings.length;sharedStrings.push(k);return sharedStrings.length-1;}
+
+  const rowsXml=rows.map((row,ri)=>{
+    const cells=row.map((cell,ci)=>{
+      const col=String.fromCharCode(65+ci);
+      const rn=ri+1;
+      if(typeof cell==='number')return`<c r="${col}${rn}" t="n"><v>${cell}</v></c>`;
+      return`<c r="${col}${rn}" t="s"><v>${sid(cell)}</v></c>`;
+    }).join('');
+    return`<row r="${ri+1}">${cells}</row>`;
+  }).join('');
+
+  const ssXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="${sharedStrings.length}" uniqueCount="${sharedStrings.length}">${sharedStrings.map(s=>`<si><t xml:space="preserve">${esc(s)}</t></si>`).join('')}</sst>`;
+  const sheetXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${rowsXml}</sheetData></worksheet>`;
+  const wbXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Vocabulary" sheetId="1" r:id="rId1"/></sheets></workbook>`;
+  const relsXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings" Target="sharedStrings.xml"/></Relationships>`;
+  const appRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`;
+  const ct=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/sharedStrings.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml"/></Types>`;
+
+  // Pack as ZIP using a minimal JS ZIP builder
+  function u8(str){const b=[];for(let i=0;i<str.length;i++){const c=str.charCodeAt(i);if(c<128)b.push(c);else if(c<2048)b.push(192|(c>>6),128|(c&63));else b.push(224|(c>>12),128|((c>>6)&63),128|(c&63));}return new Uint8Array(b);}
+  function crc32(data){let c=0xFFFFFFFF;for(let i=0;i<data.length;i++){c^=data[i];for(let j=0;j<8;j++)c=c&1?(c>>>1)^0xEDB88320:(c>>>1);}return(c^0xFFFFFFFF)>>>0;}
+  function u16le(n){return[n&255,(n>>8)&255];}
+  function u32le(n){return[n&255,(n>>8)&255,(n>>16)&255,(n>>24)&255];}
+
+  const files=[
+    ['[Content_Types].xml',ct],['_rels/.rels',appRels],
+    ['xl/workbook.xml',wbXml],['xl/_rels/workbook.xml.rels',relsXml],
+    ['xl/sharedStrings.xml',ssXml],['xl/worksheets/sheet1.xml',sheetXml],
+  ];
+
+  const entries=[];let offset=0;
+  const parts=[];
+  files.forEach(([name,content])=>{
+    const nameBytes=u8(name);
+    const dataBytes=u8(content);
+    const crc=crc32(dataBytes);
+    const localHeader=[0x50,0x4B,0x03,0x04,20,0,0,0,0,0,0,0,0,0,...u32le(crc),...u32le(dataBytes.length),...u32le(dataBytes.length),...u16le(nameBytes.length),0,0,...nameBytes];
+    entries.push({name:nameBytes,crc,size:dataBytes.length,offset});
+    offset+=localHeader.length+dataBytes.length;
+    parts.push(new Uint8Array(localHeader),dataBytes);
+  });
+
+  const centralDir=[];
+  entries.forEach(({name,crc,size,offset})=>{
+    centralDir.push(...[0x50,0x4B,0x01,0x02,20,0,20,0,0,0,0,0,0,0,0,0,...u32le(crc),...u32le(size),...u32le(size),...u16le(name.length),0,0,0,0,0,0,0,0,0,0,0,...u32le(offset),...name]);
+  });
+  const cdSize=centralDir.length;
+  const eocd=[0x50,0x4B,0x05,0x06,0,0,0,0,...u16le(entries.length),...u16le(entries.length),...u32le(cdSize),...u32le(offset),0,0];
+  const allParts=[...parts,new Uint8Array(centralDir),new Uint8Array(eocd)];
+  const total=allParts.reduce((s,p)=>s+p.length,0);
+  const out=new Uint8Array(total);let pos=0;
+  allParts.forEach(p=>{out.set(p,pos);pos+=p.length;});
+  const blob=new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='Deutschlerner_'+new Date().toISOString().slice(0,10)+'.xlsx';a.click();
+  showToast('Excel file exported!');
+}
+
+// drag-and-drop on startup
+// drag-drop removed (file load still available in Settings)
+
+function showToast(msg){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:100px;font-size:13px;z-index:9999;transition:opacity .3s;';document.body.appendChild(t);}
+  t.textContent=msg;t.style.opacity=1;
+  clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity=0,2500);
+}
+
+function updateSaveBanner(){
+  const b=document.getElementById('save-banner');
+  if(!b) return;
+  const hasGist = !!currentUser;
+  if(unsavedCount>0 && !hasGist){
+    b.style.display='flex';
+    const el=document.getElementById('unsaved-count');
+    if(el) el.textContent=unsavedCount;
+  } else {
+    b.style.display='none';
+  }
+}
+
+// ===================== SETTINGS =====================
+function getKey(){return localStorage.getItem('ds_key')||'';}
+function getEndpoint(){return localStorage.getItem('ds_endpoint')||'https://api.deepseek.com/v1/chat/completions';}
+function getModel(){return localStorage.getItem('ds_model')||'deepseek-chat';}
+function saveKey(){const k=document.getElementById('key-input').value.trim();if(!k)return;localStorage.setItem('ds_key',k);document.getElementById('key-status').innerHTML='<span style="color:#15803d;">✓ Saved</span>';updateApiIndicator();}
+function clearKey(){localStorage.removeItem('ds_key');document.getElementById('key-input').value='';document.getElementById('key-status').innerHTML='<span style="color:#666;">Cleared</span>';updateApiIndicator();}
+function saveEndpoint(){const ep=document.getElementById('endpoint-input').value.trim();const mo=document.getElementById('model-input').value.trim();if(ep)localStorage.setItem('ds_endpoint',ep);if(mo)localStorage.setItem('ds_model',mo);showToast('Endpoint saved');}
+function loadSettings(){if(getKey())document.getElementById('key-input').placeholder=getKey().slice(0,8)+'••••'+getKey().slice(-4);document.getElementById('endpoint-input').value=getEndpoint();document.getElementById('model-input').value=getModel();}
+function updateApiIndicator(){const el=document.getElementById('api-indicator');if(el)el.innerHTML=getKey()?'<span style="color:#15803d;">● DeepSeek connected</span>':'<span style="color:#999;">No key — <a href="#" onclick="gv(\'settings\',null);return false;" style="color:#1a56db;">Settings</a></span>';}
+async function testKey(){const el=document.getElementById('test-result');el.innerHTML='<div style="display:flex;align-items:center;gap:8px;"><div class="spin"></div>Testing...</div>';try{const r=await callAI('Reply: connected');el.innerHTML='<span style="color:#15803d;">✓ API working!</span>';}catch(e){el.innerHTML='<span style="color:#e53e3e;">✗ '+e.message+'</span>';}}
+
+// ===================== SETTINGS: DUAL API MODE =====================
+function setApiMode(mode){
+  localStorage.setItem('api_mode', mode);
+  const isProxy = mode === 'proxy';
+  document.getElementById('settings-proxy-panel').style.display = isProxy ? '' : 'none';
+  document.getElementById('settings-direct-panel').style.display = isProxy ? 'none' : '';
+  document.getElementById('mode-btn-proxy').style.background = isProxy ? '#1a1a1a' : '#fff';
+  document.getElementById('mode-btn-proxy').style.color = isProxy ? '#fff' : '#666';
+  document.getElementById('mode-btn-direct').style.background = isProxy ? '#fff' : '#1a1a1a';
+  document.getElementById('mode-btn-direct').style.color = isProxy ? '#666' : '#fff';
+}
+function saveDirectSettings(){
+  const k=document.getElementById('key-input').value.trim();
+  const ep=document.getElementById('endpoint-input').value.trim();
+  const mo=document.getElementById('model-input').value.trim();
+  if(k) localStorage.setItem('ds_key',k);
+  if(ep) localStorage.setItem('ds_endpoint',ep);
+  if(mo) localStorage.setItem('ds_model',mo);
+  document.getElementById('key-status').innerHTML='<span style="color:#15803d;">✓ Saved</span>';
+  updateApiIndicator();
+}
+function clearDirectSettings(){
+  ['ds_key','ds_endpoint','ds_model'].forEach(k=>localStorage.removeItem(k));
+  ['key-input','endpoint-input','model-input'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('key-status').innerHTML='<span style="color:#666;">Cleared</span>';
+  updateApiIndicator();
+}
+function saveProxySettings(){
+  const url=document.getElementById('proxy-url-input').value.trim();
+  const tok=document.getElementById('proxy-token-input').value.trim();
+  if(url) localStorage.setItem('proxy_url',url);
+  if(tok) localStorage.setItem('proxy_token',tok);
+  document.getElementById('key-status').innerHTML='<span style="color:#15803d;">✓ Proxy saved</span>';
+  updateApiIndicator();
+}
+function clearProxySettings(){
+  ['proxy_url','proxy_token'].forEach(k=>localStorage.removeItem(k));
+  ['proxy-url-input','proxy-token-input'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('key-status').innerHTML='<span style="color:#666;">Cleared</span>';
+}
+async function testConnection(){
+  const el=document.getElementById('test-result');
+  el.innerHTML='<div style="display:flex;align-items:center;gap:8px;"><div class="spin"></div>Testing...</div>';
+  try{
+    const r=await callAI('Reply with just the word: connected');
+    el.innerHTML='<span style="color:#15803d;">✓ Connected!</span>';
+  }catch(e){
+    el.innerHTML='<span style="color:#e53e3e;">✗ '+e.message+'</span>';
+  }
+}
+function loadSettings(){
+  const mode=localStorage.getItem('api_mode')||'direct';
+  setApiMode(mode);
+  const k=getKey();
+  if(k) document.getElementById('key-input').placeholder=k.slice(0,6)+'••••'+k.slice(-3);
+  document.getElementById('endpoint-input').value=getEndpoint();
+  document.getElementById('model-input').value=getModel();
+  const pu=localStorage.getItem('proxy_url')||'';
+  const pt=localStorage.getItem('proxy_token')||'';
+  if(pu) document.getElementById('proxy-url-input').value=pu;
+  if(pt) document.getElementById('proxy-token-input').placeholder='••••••••••••'+pt.slice(-4);
+  loadGistSettings();
+}
+function updateApiIndicator(){
+  const el=document.getElementById('api-indicator');
+  if(!el) return;
+  const mode=localStorage.getItem('api_mode')||'direct';
+  const connected=mode==='proxy'
+    ? (localStorage.getItem('proxy_url')&&localStorage.getItem('proxy_token'))
+    : getKey();
+  el.innerHTML=connected
+    ? '<span style="color:#15803d;">● AI connected</span>'
+    : '<span style="color:#999;">No AI key — <a href="#" onclick="gv(\'settings\',null);return false;" style="color:#1a56db;">Settings</a></span>';
+}
+
+// ===================== GIST SYNC =====================
+// ===================== SUPABASE =====================
+const SUPA_URL = 'https://xvqryfwuwthfxafvnwwz.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2cXJ5Znd1d3RoZnhhZnZud3d6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMzkwMjQsImV4cCI6MjA5NTYxNTAyNH0.6hLVlLExibEx9tDvotV1j5481jTbKOpwJGyFYg3mJNc';
+const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
+
+let currentUser = null;
+let isSyncing = false;
+
+// ---- AUTH UI ----
+function showAuthPanel(panel) {
+  ['login','register','loading'].forEach(p => {
+    document.getElementById('auth-'+p+'-panel').style.display = p===panel ? '' : 'none';
+  });
+}
+
+async function authLogin() {
+  const email = document.getElementById('auth-email').value.trim();
+  const password = document.getElementById('auth-password').value;
+  const statusEl = document.getElementById('auth-status');
+  if(!email || !password) { statusEl.innerHTML='<span style="color:#e53e3e;">Please fill in email and password</span>'; return; }
+  showAuthPanel('loading');
+  document.getElementById('auth-loading-msg').textContent = 'Signing in...';
+  const { data, error } = await supa.auth.signInWithPassword({ email, password });
+  if(error) {
+    showAuthPanel('login');
+    statusEl.innerHTML = '<span style="color:#e53e3e;">'+error.message+'</span>';
+    return;
+  }
+  await onSignedIn(data.user);
+}
+
+async function authRegister() {
+  const email = document.getElementById('reg-email').value.trim();
+  const pw = document.getElementById('reg-password').value;
+  const pw2 = document.getElementById('reg-password2').value;
+  const statusEl = document.getElementById('reg-status');
+  if(!email||!pw) { statusEl.innerHTML='<span style="color:#e53e3e;">Please fill in all fields</span>'; return; }
+  if(pw !== pw2) { statusEl.innerHTML='<span style="color:#e53e3e;">Passwords do not match</span>'; return; }
+  if(pw.length < 6) { statusEl.innerHTML='<span style="color:#e53e3e;">Password must be at least 6 characters</span>'; return; }
+  showAuthPanel('loading');
+  document.getElementById('auth-loading-msg').textContent = 'Creating account...';
+  const { data, error } = await supa.auth.signUp({ email, password: pw });
+  if(error) {
+    showAuthPanel('register');
+    statusEl.innerHTML = '<span style="color:#e53e3e;">'+error.message+'</span>';
+    return;
+  }
+  // Fresh account — start with empty db
+  db = { words:[], notes:[] };
+  await onSignedIn(data.user);
+}
+
+async function onSignedIn(user) {
+  currentUser = user;
+  document.getElementById('auth-loading-msg').textContent = 'Loading your data...';
+  // Try to load existing data from Supabase
+  const { data, error } = await supa
+    .from('user_data')
+    .select('data, updated_at')
+    .eq('user_id', user.id)
+    .maybeSingle();
+  if(data && data.data) {
+    db = data.data;
+    if(!db.notes) db.notes = [];
+    showToast('☁️ Loaded — '+db.words.length+' words');
+  }
+  // Hide auth screen, show app
+  document.getElementById('startup').style.display = 'none';
+  document.getElementById('nav-email').textContent = user.email;
+  updateGistUI();
+  renderHome();
+}
+
+async function authSignOut() {
+  if(!confirm('Sign out? Make sure your data is synced.')) return;
+  await supa.auth.signOut();
+  currentUser = null;
+  db = { words:[], notes:[] };
+  document.getElementById('startup').style.display = 'flex';
+  showAuthPanel('login');
+  document.getElementById('nav-email').textContent = '';
+}
+
+// ---- SYNC ----
+async function syncToGist(silent=false) {
+  if(!currentUser) return;
+  if(isSyncing) return;
+  isSyncing = true;
+  const badge = document.getElementById('gist-status-badge');
+  if(badge) badge.innerHTML = '<span style="color:#888;">↑ Saving...</span>';
+  try {
+    const { error } = await supa.from('user_data').upsert({
+      user_id: currentUser.id,
+      data: db,
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id' });
+    if(error) throw error;
+    const now = Date.now();
+    localStorage.setItem('last_sync', String(now));
+    unsavedCount = 0;
+    updateSaveBanner();
+    updateGistUI();
+    if(!silent) showToast('☁️ Saved to cloud');
+  } catch(e) {
+    if(badge) badge.innerHTML = '<span style="color:#e53e3e;">✗ Save failed</span>';
+    if(!silent) showToast('Save failed: '+e.message);
+  }
+  isSyncing = false;
+}
+
+async function syncFromGist(silent=false) {
+  if(!currentUser) return;
+  const badge = document.getElementById('gist-status-badge');
+  if(badge) badge.innerHTML = '<span style="color:#888;">↓ Loading...</span>';
+  try {
+    const { data, error } = await supa
+      .from('user_data')
+      .select('data, updated_at')
+      .eq('user_id', currentUser.id)
+      .maybeSingle();
+    if(error) throw error;
+    if(!data) { if(!silent) showToast('No cloud data found'); updateGistUI(); return; }
+    db = data.data;
+    if(!db.notes) db.notes = [];
+    unsavedCount = 0;
+    localStorage.setItem('last_sync', String(Date.now()));
+    updateGistUI();
+    renderHome();
+    if(!silent) showToast('☁️ Loaded from cloud — '+db.words.length+' words');
+  } catch(e) {
+    if(badge) badge.innerHTML = '<span style="color:#e53e3e;">✗ Load failed</span>';
+    if(!silent) showToast('Load failed: '+e.message);
+  }
+}
+
+function updateGistUI() {
+  const badge = document.getElementById('gist-status-badge');
+  const lastSync = localStorage.getItem('last_sync');
+  const lastEl = document.getElementById('gist-last-sync');
+  const accountEl = document.getElementById('account-info');
+  if(currentUser) {
+    if(badge) badge.innerHTML = '<span style="color:#15803d;">● Connected</span>';
+    if(accountEl) accountEl.innerHTML = `Signed in as <strong>${currentUser.email}</strong>`;
+    if(lastEl && lastSync) lastEl.textContent = 'Last synced: '+new Date(parseInt(lastSync)).toLocaleString('en');
+  } else {
+    if(badge) badge.innerHTML = '<span style="color:#999;">○ Not signed in</span>';
+  }
+}
+
+function loadGistSettings() { updateGistUI(); }
+
+function autoSync() {
+  if(currentUser) syncToGist(true);
+}
+
+// Check if already logged in on page load
+window.addEventListener('load', async () => {
+  const { data } = await supa.auth.getSession();
+  if(data.session && data.session.user) {
+    const startup = document.getElementById('startup');
+    showAuthPanel('loading');
+    document.getElementById('auth-loading-msg').textContent = 'Resuming session...';
+    await onSignedIn(data.session.user);
+  }
+  // Listen for auth changes
+  supa.auth.onAuthStateChange(async (event, session) => {
+    if(event === 'SIGNED_OUT') {
+      document.getElementById('startup').style.display = 'flex';
+      showAuthPanel('login');
+    }
+  });
+});
+
+
+// ===================== AI =====================
+async function callAI(prompt){
+  const mode = localStorage.getItem('api_mode')||'direct';
+  if(mode==='proxy'){
+    const url=localStorage.getItem('proxy_url');
+    const tok=localStorage.getItem('proxy_token');
+    if(!url||!tok) throw new Error('No proxy configured — go to Settings');
+    const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','X-Access-Token':tok},body:JSON.stringify({model:'deepseek-chat',max_tokens:1800,temperature:0.1,messages:[{role:'user',content:prompt}]})});
+    if(!r.ok){const e=await r.text();throw new Error('Proxy error '+r.status+': '+e.slice(0,120));}
+    const d=await r.json();return d.choices[0].message.content||'';
+  } else {
+    const k=getKey();if(!k)throw new Error('No API key — go to Settings');
+    const r=await fetch(getEndpoint(),{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+k},body:JSON.stringify({model:getModel(),max_tokens:1800,temperature:0.1,messages:[{role:'user',content:prompt}]})});
+    if(!r.ok){const e=await r.text();throw new Error('API '+r.status+': '+e.slice(0,150));}
+    const d=await r.json();return d.choices[0].message.content||'';
+  }
+}
+
+const PROMPT=word=>`Analyze the German word "${word}". Output ONLY a raw JSON object — no markdown, no explanation. Plain English/German text only. Set irrelevant fields to null.
+{"word":"${word}","pos":"noun|verb|adj|adv|conj|prep|pron|num|part|intj|other","en":"primary English meaning","en_alt":["alt1","alt2"],"level":"A1|A2|B1|B2|C1|C2","noun_info":{"article":"der|die|das","plural":"","cases":{"nom_sg":"","acc_sg":"","dat_sg":"","gen_sg":"","nom_pl":"","acc_pl":"","dat_pl":""}},"verb_info":{"auxiliary":"haben|sein","separable":false,"prefix":"","stem_change":"","present":{"ich":"","du":"","er":"","wir":"","ihr":"","sie":""},"past":{"ich":"","du":"","er":"","wir":"","ihr":"","sie":""},"perfect":"","konjunktiv2":"","imperative":"","governance":{"type":"akkusativ|dativ|akkusativ+dativ|genitiv|keins","explanation":"","akkusativ_example":"","dativ_example":"","note":""}},"adj_info":{"comparative":"","superlative":"","irregular":false,"note":""},"adv_info":{"type":"manner|place|time|degree|causal|modal","note":""},"conj_info":{"type":"coordinating|subordinating|correlative","word_order":"verb-second|verb-final|no-change","example_clause":"","note":""},"prep_info":{"cases":["akkusativ"],"note":""},"phrases":[{"de":"","en":""},{"de":"","en":""},{"de":"","en":""},{"de":"","en":""}],"example":"","example_en":"","synonyms":[],"antonyms":[],"related":[]}`;
+
+async function doLookup(){
+  const word=document.getElementById('lookup-inp').value.trim();
+  if(!word){alert('Please enter a word');return;}
+  const btn=document.getElementById('lookup-btn');btn.disabled=true;
+  document.getElementById('pending-area').style.display='none';
+  document.getElementById('lookup-status').innerHTML='<div class="spin"></div><span>Analyzing <strong>'+word+'</strong>...</span>';
+  pending=null;
+  try{
+    const raw=await callAI(PROMPT(word));
+    const s=raw.indexOf('{'),e=raw.lastIndexOf('}');
+    if(s===-1||e===-1)throw new Error('No JSON found');
+    const data=JSON.parse(raw.slice(s,e+1));
+    pending=data;
+    document.getElementById('pending-preview').innerHTML=renderDict(data);
+    document.getElementById('pending-area').style.display='block';
+    document.getElementById('lookup-status').innerHTML='<span style="color:#15803d;">✓ Card ready for <strong>'+data.word+'</strong></span>';
+    document.getElementById('lookup-inp').value='';
+  }catch(err){
+    document.getElementById('lookup-status').innerHTML='<span style="color:#e53e3e;">✗ '+err.message+'</span>';
+  }
+  btn.disabled=false;
+}
+
+function savePending(){
+  if(!pending)return;
+  if(db.words.find(w=>w.word.toLowerCase()===pending.word.toLowerCase())){alert('Already in your list');return;}
+  const now=Date.now();
+  const note=document.getElementById('pending-note').value.trim();
+  const w={id:'w'+now,word:pending.word,en:pending.en,pos:pending.pos||'other',
+    article:pending.noun_info&&pending.noun_info.article||'',
+    example:pending.example||'',note,
+    synonyms:pending.synonyms||[],antonyms:pending.antonyms||[],related:pending.related||[],
+    stage:0,nextReview:now,mastered:false,diff:0,reviews:[],dictData:pending,addedAt:now};
+  db.words.push(w);
+  unsavedCount++;
+  updateSaveBanner();
+  discardPending();
+  document.getElementById('lookup-status').innerHTML='<span style="color:#15803d;">✓ <strong>'+w.word+'</strong> saved! <a href="#" onclick="gv(\'words\',document.querySelectorAll(\'.nt\')[4]);return false;" style="color:#1a56db;">View in vocabulary →</a></span>';
+  renderHome();
+}
+
+function discardPending(){pending=null;document.getElementById('pending-area').style.display='none';document.getElementById('pending-note').value='';}
+
+function addManual(){
+  const word=document.getElementById('m-word').value.trim();
+  const en=document.getElementById('m-en').value.trim();
+  if(!word||!en){alert('Fill in word and meaning');return;}
+  if(db.words.find(w=>w.word.toLowerCase()===word.toLowerCase())){alert('Already exists');return;}
+  const now=Date.now();
+  db.words.push({id:'w'+now,word,en,pos:document.getElementById('m-pos').value,
+    article:document.getElementById('m-art').value,example:'',
+    note:document.getElementById('m-note').value.trim(),
+    synonyms:[],antonyms:[],related:[],
+    stage:0,nextReview:now,mastered:false,diff:0,reviews:[],dictData:null,addedAt:now});
+  unsavedCount++;
+  updateSaveBanner();
+  clearManual();
+  document.getElementById('m-msg').innerHTML='<span style="color:#15803d;">✓ Saved!</span>';
+  renderHome();
+  autoSync();
+}
+function clearManual(){['m-word','m-en','m-note'].forEach(f=>document.getElementById(f).value='');document.getElementById('m-art').value='';document.getElementById('m-pos').value='noun';}
+
+// ===================== SEMANTIC SIMILARITY =====================
+function tokenize(str){
+  const stops=new Set(['the','a','an','to','of','in','on','at','is','be','or','and','for','with','by','as','not','no','up','out','off','into','from','that','this','it','its','have','has','had','do','does','did','will','can','could','may','might','would','should','very','so','just']);
+  return new Set((str||'').toLowerCase().replace(/[^a-z\s]/g,'').split(/\s+/).filter(t=>t.length>2&&!stops.has(t)));
+}
+function findRelated(w){
+  const all=db.words.filter(x=>x.id!==w.id);
+  const res={synonyms:[],antonyms:[],related:[],samePOS:[]};
+  const wSyns=new Set([...(w.synonyms||[])].map(s=>s.toLowerCase()));
+  const wAnts=new Set([...(w.antonyms||[])].map(s=>s.toLowerCase()));
+  const wRels=new Set([...(w.related||[])].map(s=>s.toLowerCase()));
+  const wTokens=tokenize(w.en+' '+(w.word||''));
+  all.forEach(x=>{
+    const xl=x.word.toLowerCase();
+    if(wSyns.has(xl)||(x.synonyms||[]).map(s=>s.toLowerCase()).includes(w.word.toLowerCase())){res.synonyms.push(x);return;}
+    if(wAnts.has(xl)||(x.antonyms||[]).map(s=>s.toLowerCase()).includes(w.word.toLowerCase())){res.antonyms.push(x);return;}
+    if(wRels.has(xl)||(x.related||[]).map(s=>s.toLowerCase()).includes(w.word.toLowerCase())){res.related.push(x);return;}
+    const xTokens=tokenize(x.en+' '+(x.word||''));
+    const overlap=[...wTokens].filter(t=>xTokens.has(t)&&t.length>3);
+    if(overlap.length>=1){res.related.push(x);return;}
+    if(x.pos===w.pos&&res.samePOS.length<3)res.samePOS.push(x);
+  });
+  return res;
+}
+
+// ===================== DICT RENDERER =====================
+function renderDict(d){
+  const aB={der:'#e8f0fd',die:'#fde8e8',das:'#e8f5e9'};
+  const aF={der:'#1a56db',die:'#9b1c1c',das:'#1b5e20'};
+  const lB={A1:'#e8f5e9',A2:'#e8f5e9',B1:'#e8f0fd',B2:'#ede8fd',C1:'#fde8e8',C2:'#fde8e8'};
+  const lF={A1:'#1b5e20',A2:'#1b5e20',B1:'#1a56db',B2:'#4c1d95',C1:'#9b1c1c',C2:'#9b1c1c'};
+  const ni=d.noun_info,art=ni&&ni.article,lv=d.level||'';
+  const pm=POS_META[d.pos]||POS_META.other;
+  let h=`<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.75rem;">
+    <div>
+      ${art?`<span style="background:${aB[art]};color:${aF[art]};padding:2px 9px;border-radius:4px;font-size:12px;font-weight:600;margin-right:6px;">${art}</span>`:''}
+      <span style="font-size:22px;font-weight:700;">${d.word}</span>
+      ${ni&&ni.plural?`<span style="font-size:13px;color:#666;margin-left:6px;">/ ${ni.plural}</span>`:''}
+      <span class="pill ab ${pm.cls}" style="margin-left:6px;vertical-align:middle;">${pm.label}</span>
+      <div style="font-size:14px;color:#555;margin-top:4px;">${d.en||''}${d.en_alt&&d.en_alt.length?'; <em style="color:#888;">'+d.en_alt.join('; ')+'</em>':''}</div>
+    </div>
+    ${lv?`<span style="background:${lB[lv]||'#f5f5f3'};color:${lF[lv]||'#666'};padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;flex-shrink:0;margin-left:10px;">${lv}</span>`:''}
+  </div>`;
+  if(d.example)h+=`<div style="background:#f9f9f9;border-radius:8px;padding:10px 12px;margin-bottom:.875rem;"><div style="font-size:13px;font-style:italic;margin-bottom:3px;">${d.example}</div>${d.example_en?`<div style="font-size:12px;color:#666;">${d.example_en}</div>`:''}</div>`;
+  const vi=d.verb_info;
+  if(vi&&vi.present){
+    const gov=vi.governance;
+    h+=`<div class="dv"></div><div style="font-size:13px;font-weight:600;margin-bottom:8px;">Conjugation</div>`;
+    const b=[];if(vi.auxiliary)b.push(`<span class="pill" style="background:#f5f5f3;color:#444;">aux: ${vi.auxiliary}</span>`);if(vi.separable)b.push(`<span class="pill" style="background:#fde8e8;color:#9b1c1c;">separable · ${vi.prefix}</span>`);if(vi.stem_change)b.push(`<span class="pill" style="background:#ede8fd;color:#4c1d95;">stem: ${vi.stem_change}</span>`);
+    if(b.length)h+=`<div style="margin-bottom:8px;">${b.join('')}</div>`;
+    h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+      <div><div class="lab">PRESENT</div><table class="ct">${['ich','du','er','wir','ihr','sie'].map((k,i)=>`<tr><td>${['ich','du','er/sie','wir','ihr','sie'][i]}</td><td style="font-weight:500;">${vi.present[k]||'—'}</td></tr>`).join('')}</table></div>
+      <div><div class="lab">SIMPLE PAST</div><table class="ct">${['ich','du','er','wir','ihr','sie'].map((k,i)=>`<tr><td>${['ich','du','er/sie','wir','ihr','sie'][i]}</td><td style="font-weight:500;">${vi.past&&vi.past[k]||'—'}</td></tr>`).join('')}</table></div>
+    </div>`;
+    if(vi.perfect||vi.konjunktiv2||vi.imperative)h+=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">${vi.perfect?`<div style="background:#f5f5f3;border-radius:8px;padding:6px 12px;flex:1;min-width:110px;"><div class="lab">PERFEKT</div><div style="font-size:13px;font-weight:600;">${vi.perfect}</div></div>`:''}${vi.konjunktiv2?`<div style="background:#f5f5f3;border-radius:8px;padding:6px 12px;flex:1;min-width:110px;"><div class="lab">KONJUNKTIV II</div><div style="font-size:13px;font-weight:600;">${vi.konjunktiv2}</div></div>`:''}${vi.imperative?`<div style="background:#f5f5f3;border-radius:8px;padding:6px 12px;flex:1;min-width:110px;"><div class="lab">IMPERATIV</div><div style="font-size:13px;font-weight:600;">${vi.imperative}</div></div>`:''}</div>`;
+    if(gov&&gov.type&&gov.type!=='keins'){
+      const gm={akkusativ:['#fde8e8','#9b1c1c','+ Accusative'],dativ:['#e8f0fd','#1a56db','+ Dative'],'akkusativ+dativ':['#ede8fd','#4c1d95','+ Acc. or Dat.'],genitiv:['#e8f5e9','#1b5e20','+ Genitive']}[gov.type]||['#f5f5f3','#444',gov.type];
+      h+=`<div class="dv"></div><div class="lab" style="margin-bottom:6px;">CASE GOVERNMENT</div><span class="pill" style="background:${gm[0]};color:${gm[1]};font-size:12px;padding:4px 12px;margin-bottom:8px;display:inline-block;">${gm[2]}</span>`;
+      if(gov.explanation)h+=`<div style="font-size:13px;color:#555;margin-bottom:8px;">${gov.explanation}</div>`;
+      if(gov.akkusativ_example)h+=`<div class="gb" style="background:#fde8e8;"><div style="font-size:10px;color:#9b1c1c;font-weight:600;margin-bottom:3px;">ACCUSATIVE</div><div style="font-size:13px;font-style:italic;color:#9b1c1c;">${gov.akkusativ_example}</div></div>`;
+      if(gov.dativ_example)h+=`<div class="gb" style="background:#e8f0fd;"><div style="font-size:10px;color:#1a56db;font-weight:600;margin-bottom:3px;">DATIVE</div><div style="font-size:13px;font-style:italic;color:#1a56db;">${gov.dativ_example}</div></div>`;
+    }
+  }
+  if(ni&&ni.cases)h+=`<div class="dv"></div><div style="font-size:13px;font-weight:600;margin-bottom:8px;">Declension</div><div class="nc">${[['nom_sg','Nom.'],['acc_sg','Akk.'],['dat_sg','Dat.'],['gen_sg','Gen.'],['nom_pl','Pl.N'],['acc_pl','Pl.A'],['dat_pl','Pl.D']].map(([k,l])=>`<div class="cc"><div class="cn">${l}</div><div class="cv">${ni.cases[k]||'—'}</div></div>`).join('')}</div>`;
+  const ai=d.adj_info;
+  if(ai&&(ai.comparative||ai.superlative))h+=`<div class="dv"></div><div style="font-size:13px;font-weight:600;margin-bottom:8px;">Degree of comparison</div><div style="display:flex;gap:6px;flex-wrap:wrap;"><div style="background:#f5f5f3;border-radius:8px;padding:6px 12px;flex:1;"><div class="lab">POSITIVE</div><div style="font-size:13px;font-weight:600;">${d.word}</div></div>${ai.comparative?`<div style="background:#f5f5f3;border-radius:8px;padding:6px 12px;flex:1;"><div class="lab">COMPARATIVE</div><div style="font-size:13px;font-weight:600;">${ai.comparative}</div></div>`:''}${ai.superlative?`<div style="background:#f5f5f3;border-radius:8px;padding:6px 12px;flex:1;"><div class="lab">SUPERLATIVE</div><div style="font-size:13px;font-weight:600;">${ai.superlative}</div></div>`:''}</div>${ai.note?`<div style="font-size:11px;color:#999;margin-top:6px;">${ai.note}</div>`:''}`;
+  if(d.adv_info&&d.adv_info.note)h+=`<div class="dv"></div><div style="font-size:13px;font-weight:600;margin-bottom:6px;">Adverb</div>${d.adv_info.type?`<span class="pill" style="background:#fff8e1;color:#78350f;">${d.adv_info.type}</span><br><br>`:''}<div style="font-size:13px;color:#555;">${d.adv_info.note}</div>`;
+  if(d.conj_info){const ci=d.conj_info;h+=`<div class="dv"></div><div style="font-size:13px;font-weight:600;margin-bottom:8px;">Conjunction</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">${ci.type?`<div style="background:#f5f5f3;border-radius:8px;padding:6px 12px;flex:1;"><div class="lab">TYPE</div><div style="font-size:13px;font-weight:600;">${ci.type}</div></div>`:''}${ci.word_order?`<div style="background:#fce7f3;border-radius:8px;padding:6px 12px;flex:1;"><div class="lab">WORD ORDER</div><div style="font-size:13px;font-weight:600;">${{'verb-final':'Verb-final (subord.)','verb-second':'Verb-second','no-change':'No change'}[ci.word_order]||ci.word_order}</div></div>`:''}</div>${ci.example_clause?`<div class="gb" style="background:#fce7f3;"><div style="font-size:10px;color:#831843;font-weight:600;margin-bottom:3px;">EXAMPLE</div><div style="font-size:13px;font-style:italic;color:#831843;">${ci.example_clause}</div></div>`:''}`;}
+  if(d.prep_info){const pi=d.prep_info;h+=`<div class="dv"></div><div style="font-size:13px;font-weight:600;margin-bottom:8px;">Preposition</div>${(pi.cases||[]).map(c=>({akkusativ:['#fde8e8','#9b1c1c','+ Accusative'],dativ:['#e8f0fd','#1a56db','+ Dative'],'akkusativ+dativ':['#ede8fd','#4c1d95','+ Acc./Dat.'],genitiv:['#e8f5e9','#1b5e20','+ Genitive']}[c]||['#f5f5f3','#444','+ '+c])).map(g=>`<span class="pill" style="background:${g[0]};color:${g[1]};">${g[2]}</span>`).join('')}${pi.note?`<div style="font-size:13px;color:#555;margin-top:8px;">${pi.note}</div>`:''}`;}
+  if(d.phrases&&d.phrases.length){h+=`<div class="dv"></div><div style="font-size:13px;font-weight:600;margin-bottom:8px;">Common phrases</div>`;d.phrases.filter(p=>p.de).forEach(p=>h+=`<div class="pi"><span class="pill" style="background:#f5f5f3;color:#444;white-space:nowrap;border:1px solid #e8e8e8;">${p.de}</span><span style="color:#555;">${p.en}</span></div>`);}
+  const sy=d.synonyms||[],an=d.antonyms||[],re=d.related||[];
+  if(sy.length||an.length||re.length){h+=`<div class="dv"></div>`;if(sy.length)h+=`<div style="margin-bottom:6px;"><div class="lab">SYNONYMS</div>${sy.map(s=>`<span class="pill" style="background:#e8f5e9;color:#1b5e20;">${s}</span>`).join('')}</div>`;if(an.length)h+=`<div style="margin-bottom:6px;"><div class="lab">ANTONYMS</div>${an.map(s=>`<span class="pill" style="background:#fde8e8;color:#9b1c1c;">${s}</span>`).join('')}</div>`;if(re.length)h+=`<div><div class="lab">WORD FAMILY</div>${re.map(s=>`<span class="pill" style="background:#ede8fd;color:#4c1d95;">${s}</span>`).join('')}</div>`;}
+  return h;
+}
+
+// ===================== TOOLTIP =====================
+function buildTooltip(w){
+  const rel=findRelated(w);
+  const total=rel.synonyms.length+rel.antonyms.length+rel.related.length+rel.samePOS.length;
+  if(total===0)return`<div class="tooltip"><div class="tt-title">YOUR VOCABULARY</div><div class="tt-empty">No related words yet</div></div>`;
+  let h=`<div class="tooltip"><div class="tt-title">RELATED IN YOUR VOCABULARY</div>`;
+  if(rel.synonyms.length){h+=`<div class="tt-group"><div class="tt-lbl">SYNONYMS</div>`;rel.synonyms.slice(0,4).forEach(x=>h+=`<span class="tt-word" onclick="event.stopPropagation();showDetail('${x.id}')">${x.word} <span class="tt-en">${x.en.slice(0,18)}</span></span>`);h+=`</div>`;}
+  if(rel.antonyms.length){h+=`<div class="tt-group"><div class="tt-lbl">ANTONYMS</div>`;rel.antonyms.slice(0,4).forEach(x=>h+=`<span class="tt-word" onclick="event.stopPropagation();showDetail('${x.id}')" style="background:#fde8e8;border-color:#fca5a5;">${x.word} <span class="tt-en">${x.en.slice(0,18)}</span></span>`);h+=`</div>`;}
+  if(rel.related.length){h+=`<div class="tt-group"><div class="tt-lbl">SEMANTICALLY RELATED</div>`;rel.related.slice(0,5).forEach(x=>h+=`<span class="tt-word" onclick="event.stopPropagation();showDetail('${x.id}')" style="background:#ede8fd;border-color:#c4b5fd;">${x.word} <span class="tt-en">${x.en.slice(0,18)}</span></span>`);h+=`</div>`;}
+  if(!rel.synonyms.length&&!rel.antonyms.length&&!rel.related.length&&rel.samePOS.length){h+=`<div class="tt-group"><div class="tt-lbl">SAME WORD CLASS</div>`;rel.samePOS.forEach(x=>h+=`<span class="tt-word" onclick="event.stopPropagation();showDetail('${x.id}')">${x.word} <span class="tt-en">${x.en.slice(0,18)}</span></span>`);h+=`</div>`;}
+  return h+`</div>`;
+}
+
+// ===================== WORD ROW =====================
+function artC(w){if(w.pos==='noun'&&w.article)return 'a'+w.article;return 'a'+(w.pos||'other');}
+function artT(w){if(w.pos==='noun'&&w.article)return w.article;return(POS_META[w.pos]||POS_META.other).short;}
+function wrow(w,tooltip=false){
+  const diff=w.diff||0,border=diff>0?DC[diff]:'transparent';
+  let form='';
+  if(w.dictData){const d=w.dictData;
+    if(w.pos==='verb'&&d.verb_info&&d.verb_info.present)form=(d.verb_info.present.er||'')+(d.verb_info.perfect?' · '+d.verb_info.perfect:'');
+    else if(w.pos==='noun'&&d.noun_info&&d.noun_info.plural)form='pl: '+d.noun_info.plural;
+    else if(w.pos==='adj'&&d.adj_info&&d.adj_info.comparative)form=d.adj_info.comparative;
+    else if(w.pos==='conj'&&d.conj_info)form=d.conj_info.word_order==='verb-final'?'subord.':d.conj_info.word_order==='verb-second'?'coord.':'';
+    else if(w.pos==='prep'&&d.prep_info&&d.prep_info.cases)form='+'+d.prep_info.cases.join('/');
+  }
+  const dueNow=!w.mastered&&w.nextReview&&w.nextReview<=Date.now();
+  const rb=w.mastered?'<span class="dob">mastered</span>':dueNow?'<span class="dub">due</span>':`<span class="stb">stage ${w.stage||0}</span>`;
+  return`<div class="wr" style="border-left:3px solid ${border};" onclick="showDetail('${w.id}')">
+    <span class="ab ${artC(w)}">${artT(w)}</span>
+    <span class="wde">${w.word}</span>
+    ${form?`<span class="wfm">${form}</span>`:''}
+    <span class="wen">${w.en}</span>
+    <div class="wrt">
+      ${w.dictData?'<span style="font-size:11px;color:#bbb;" title="Has full dictionary card">📖</span>':''}
+      <div class="dots" onclick="event.stopPropagation()">${[1,2,3,4,5].map(i=>`<div class="dot${diff>=i?' d'+i:''}" onclick="setDiff('${w.id}',${diff===i?0:i})" title="${DL[i]}"></div>`).join('')}</div>
+      ${rb}
+    </div>
+    ${tooltip?buildTooltip(w):''}
+  </div>`;
+}
+function setDiff(id,val){const w=db.words.find(x=>x.id===id);if(!w)return;w.diff=val;renderHome();renderWords();}
+
+function renderWords(){
+  const q=(document.getElementById('s-inp').value||'').toLowerCase();
+  const df=document.getElementById('f-diff').value,pf=document.getElementById('f-pos').value;
+  const words=db.words.filter(w=>{
+    if(q&&!w.word.toLowerCase().includes(q)&&!(w.en||'').toLowerCase().includes(q))return false;
+    if(df!==''&&String(w.diff||0)!==df)return false;
+    if(pf&&w.pos!==pf)return false;
+    return true;
+  });
+  document.getElementById('words-list').innerHTML=words.length?words.map(w=>wrow(w,true)).join(''):'<div class="emp">No words match</div>';
+}
+
+// ===================== DETAIL OVERLAY =====================
+function showDetail(id){
+  const w=db.words.find(x=>x.id===id);if(!w)return;
+  const rel=findRelated(w);
+  let h=w.dictData?renderDict(w.dictData):`
+    <div style="margin-bottom:.75rem;">${w.article?`<span style="padding:2px 9px;border-radius:4px;font-size:12px;font-weight:600;margin-right:6px;background:#e8f0fd;color:#1a56db;">${w.article}</span>`:''}<span style="font-size:22px;font-weight:700;">${w.word}</span></div>
+    <div style="font-size:14px;color:#555;margin-bottom:.875rem;">${w.en}</div>
+    ${w.example?`<div style="background:#f9f9f9;border-radius:8px;padding:10px 12px;font-size:13px;font-style:italic;">${w.example}</div>`:''}`;
+  if(w.note)h+=`<div class="dv"></div><div style="font-size:13px;color:#666;font-style:italic;">"${w.note}"</div>`;
+  const allRel=[...rel.synonyms,...rel.antonyms,...rel.related];
+  if(allRel.length){
+    h+=`<div class="dv"></div><div style="font-size:13px;font-weight:600;margin-bottom:8px;">Related in your vocabulary</div><div style="display:flex;flex-wrap:wrap;gap:6px;">
+      ${rel.synonyms.map(x=>`<span class="tt-word" onclick="closeOv();setTimeout(()=>showDetail('${x.id}'),50)" style="pointer-events:all;cursor:pointer;">${x.word} <span class="tt-en">${x.en.slice(0,20)}</span></span>`).join('')}
+      ${rel.antonyms.map(x=>`<span class="tt-word" onclick="closeOv();setTimeout(()=>showDetail('${x.id}'),50)" style="background:#fde8e8;border-color:#fca5a5;pointer-events:all;cursor:pointer;">${x.word} <span class="tt-en">${x.en.slice(0,20)}</span></span>`).join('')}
+      ${rel.related.map(x=>`<span class="tt-word" onclick="closeOv();setTimeout(()=>showDetail('${x.id}'),50)" style="background:#ede8fd;border-color:#c4b5fd;pointer-events:all;cursor:pointer;">${x.word} <span class="tt-en">${x.en.slice(0,20)}</span></span>`).join('')}
+    </div>`;
+  }
+  h+=`<div class="dv"></div><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:12px;color:#999;">Stage ${w.stage||0}/8 · ${w.mastered?'mastered ✓':new Date(w.nextReview||Date.now()).toLocaleDateString('en')}</span><button class="btn btns" style="color:#e53e3e;" onclick="delWord('${w.id}')">🗑 Delete</button></div>`;
+  document.getElementById('ov-content').innerHTML=h;
+  document.getElementById('ov').classList.add('on');
+}
+function closeOv(){document.getElementById('ov').classList.remove('on');}
+document.getElementById('ov').addEventListener('click',e=>{if(e.target===document.getElementById('ov'))closeOv();});
+function delWord(id){if(!confirm('Delete?'))return;db.words=db.words.filter(w=>w.id!==id);unsavedCount++;renderHome();renderWords();closeOv();autoSync();}
+
+// ===================== HOME =====================
+function getLv(){const n=db.words.length;for(let i=LV_TH.length-1;i>=0;i--)if(n>=LV_TH[i])return i;return 0;}
+function getDue(){const now=Date.now();return db.words.filter(w=>!w.mastered&&(!w.nextReview||w.nextReview<=now));}
+function renderHome(){
+  const due=getDue();
+  document.getElementById('s-tot').textContent=db.words.length;
+  document.getElementById('s-due').textContent=due.length;
+  document.getElementById('s-mas').textContent=db.words.filter(w=>w.mastered).length;
+  document.getElementById('s-hrd').textContent=db.words.filter(w=>(w.diff||0)>=3).length;
+  const lv=getLv();
+  document.getElementById('lvb').textContent=LV_NM[lv];
+  document.getElementById('lv-desc').textContent=db.words.length+' words · est. '+LV_NM[lv];
+  const lm=document.getElementById('lm');lm.innerHTML='';
+  for(let i=0;i<6;i++){const s=document.createElement('div');s.className='lms'+(i<lv?' on':'');lm.appendChild(s);}
+  document.getElementById('due-alert').innerHTML=due.length>0
+    ?`<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:1rem;"><span style="font-size:18px;">⏰</span><span style="font-size:13px;color:#1e40af;flex:1;"><strong>${due.length}</strong> words due for review</span><button class="btn btns btnp" onclick="gv('review',null)">Start →</button></div>`:'' ;
+  const rec=[...db.words].reverse().slice(0,5);
+  document.getElementById('home-rec').innerHTML=rec.length?rec.map(w=>wrow(w,false)).join(''):'<div class="emp">No words yet — go to Add Word to start</div>';
+  updateApiIndicator();
+  updateSaveBanner();
+}
+
+function gv(id,el){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.querySelectorAll('.nt').forEach(t=>t.classList.remove('on'));
+  document.getElementById('view-'+id).classList.add('on');
+  if(el)el.classList.add('on');
+  if(id==='home')renderHome();
+  if(id==='review')renderReview();
+  if(id==='quiz')renderQuiz();
+  if(id==='words')renderWords();
+  if(id==='settings')loadSettings();
+  if(id==='read'){}
+  if(id==='notes')gvNotes();
+}
+
+// ===================== REVIEW =====================
+function renderReview(){
+  fcDue=getDue();
+  if(!fcDue.length){document.getElementById('review-c').innerHTML=`<div class="card" style="text-align:center;padding:3rem;"><div style="font-size:36px;margin-bottom:.875rem;">🎉</div><div style="font-size:16px;font-weight:600;margin-bottom:.5rem;">All caught up!</div><button class="btn" onclick="gv('add',null)" style="margin-top:.75rem;">Add new words</button></div>`;return;}
+  fcIdx=0;renderFC();
+}
+function renderFC(){
+  if(fcIdx>=fcDue.length){document.getElementById('review-c').innerHTML=`<div class="card" style="text-align:center;padding:3rem;"><div style="font-size:36px;margin-bottom:.875rem;">⭐</div><div style="font-size:16px;font-weight:600;margin-bottom:.5rem;">Round complete · ${fcDue.length} reviewed</div><button class="btn btnp" onclick="renderReview()" style="margin-top:.875rem;">Another round</button></div>`;return;}
+  const w=fcDue[fcIdx],diff=w.diff||0;
+  const aB={der:'#e8f0fd',die:'#fde8e8',das:'#e8f5e9'};const aF={der:'#1a56db',die:'#9b1c1c',das:'#1b5e20'};
+  let form='';
+  if(w.dictData){const d=w.dictData;if(w.pos==='verb'&&d.verb_info&&d.verb_info.present)form=(d.verb_info.present.er||'')+(d.verb_info.perfect?' · '+d.verb_info.perfect:'');else if(w.pos==='noun'&&d.noun_info&&d.noun_info.plural)form='pl: '+d.noun_info.plural;else if(w.pos==='adj'&&d.adj_info&&d.adj_info.comparative)form=d.adj_info.comparative;}
+  const dots=`<div style="display:flex;gap:5px;align-items:center;justify-content:center;margin-top:12px;">${[1,2,3,4,5].map(i=>`<div class="dot${diff>=i?' d'+i:''}" onclick="setDiffFC('${w.id}',${diff===i?0:i})" title="${DL[i]}" style="width:11px;height:11px;"></div>`).join('')}</div>`;
+  const pm=POS_META[w.pos]||POS_META.other;
+  document.getElementById('review-c').innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem;">
+      <span style="font-size:13px;color:#666;">${fcIdx+1} / ${fcDue.length}</span>
+      <div class="pb" style="flex:1;margin:0 .875rem;"><div class="pf" style="width:${Math.round(fcIdx/fcDue.length*100)}%"></div></div>
+      <button class="btn btns" onclick="showDetail('${w.id}')">📖 Full card</button>
+    </div>
+    <div class="fcw" onclick="this.querySelector('.fc').classList.toggle('flip')">
+      <div class="fc">
+        <div class="fff">
+          <div style="font-size:11px;color:#999;margin-bottom:.5rem;">tap to reveal</div>
+          ${w.pos==='noun'&&w.article?`<span style="background:${aB[w.article]};color:${aF[w.article]};padding:2px 9px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:8px;">${w.article}</span>`:`<span class="ab ${pm.cls}" style="margin-bottom:8px;">${pm.label}</span>`}
+          <div style="font-size:30px;font-weight:700;margin-bottom:4px;">${w.word}</div>
+          ${form?`<div style="font-size:13px;color:#999;">${form}</div>`:''}
+          ${dots}
+        </div>
+        <div class="fff ffb">
+          <div style="font-size:11px;color:#999;margin-bottom:.5rem;">meaning</div>
+          <div style="font-size:24px;font-weight:600;margin-bottom:6px;">${w.en}</div>
+          ${w.example?`<div style="font-size:12px;color:#666;font-style:italic;margin-top:8px;max-width:300px;text-align:center;">${w.example}</div>`:''}
+          ${dots}
+        </div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#666;text-align:center;margin-bottom:.875rem;">Did you remember it?</div>
+    <div style="display:flex;gap:8px;justify-content:center;">
+      <button class="btn" onclick="markFC('${w.id}',false)" style="min-width:80px;">✗ No</button>
+      <button class="btn" onclick="markFC('${w.id}','hard')" style="min-width:80px;">~ Sort of</button>
+      <button class="btn btnp" onclick="markFC('${w.id}',true)" style="min-width:80px;">✓ Yes!</button>
+    </div>`;
+}
+function setDiffFC(id,val){const w=db.words.find(x=>x.id===id);if(w){w.diff=val;}renderFC();}
+function markFC(id,res){
+  const w=db.words.find(x=>x.id===id);if(!w)return;
+  const now=Date.now();w.reviews.push({t:now,ok:res===true});
+  if(res===true){w.stage=Math.min((w.stage||0)+1,STAGES.length-1);if(w.stage>=STAGES.length-1)w.mastered=true;w.nextReview=now+STAGES[w.stage]*86400000;}
+  else if(res==='hard'){w.nextReview=now+86400000;}
+  else{w.stage=Math.max(0,(w.stage||0)-1);w.nextReview=now+3600000;}
+  fcIdx++;renderFC();
+}
+
+// ===================== QUIZ =====================
+function renderQuiz(){
+  if(db.words.length<4){document.getElementById('quiz-c').innerHTML=`<div class="card" style="text-align:center;padding:2.5rem;"><div style="font-size:14px;color:#666;margin-bottom:1rem;">Need at least 4 words</div><button class="btn btnp" onclick="gv('add',null)">Add words</button></div>`;return;}
+  document.getElementById('quiz-c').innerHTML=`<div class="card"><div class="sth"><div class="stt">Quiz mode</div></div><button class="btn" style="width:100%;text-align:left;padding:.875rem;margin-bottom:8px;" onclick="startQ('de_en')">→ German → English</button><button class="btn" style="width:100%;text-align:left;padding:.875rem;" onclick="startQ('en_de')">→ English → German</button></div>`;
+}
+function startQ(type){qState={type,qs:[...db.words].sort(()=>Math.random()-.5).slice(0,Math.min(10,db.words.length)),idx:0,score:0};showQ();}
+function showQ(){
+  const el=document.getElementById('quiz-c'),qs=qState.qs;
+  if(qState.idx>=qs.length){el.innerHTML=`<div class="card" style="text-align:center;padding:2.5rem;"><div style="font-size:30px;font-weight:700;margin-bottom:4px;">${qState.score}/${qs.length}</div><div style="font-size:13px;color:#666;margin-bottom:1rem;">${qState.score===qs.length?'🏆 Perfect!':qState.score>=qs.length*.7?'👍 Good!':'📚 Keep going!'}</div><div style="display:flex;gap:8px;justify-content:center;"><button class="btn btnp" onclick="startQ('${qState.type}')">Again</button><button class="btn" onclick="renderQuiz()">Back</button></div></div>`;return;}
+  const q=qs[qState.idx],isDE=qState.type==='de_en';
+  const wrong=db.words.filter(w=>w.id!==q.id).sort(()=>Math.random()-.5).slice(0,3);
+  const opts=[...wrong,q].sort(()=>Math.random()-.5);
+  el.innerHTML=`<div class="pb"><div class="pf" style="width:${Math.round(qState.idx/qs.length*100)}%"></div></div><div class="card"><div style="font-size:11px;color:#999;margin-bottom:.5rem;">${qState.idx+1} / ${qs.length}</div><div style="font-size:21px;font-weight:700;margin-bottom:1.25rem;">${isDE?(q.article&&q.pos==='noun'?q.article+' ':'')+q.word:q.en}</div>${opts.map(o=>`<button class="qo" onclick="ansQ('${o.id}','${q.id}')">${isDE?o.en:(o.article&&o.pos==='noun'?o.article+' ':'')+o.word}</button>`).join('')}</div>`;
+}
+function ansQ(chosen,correct){document.querySelectorAll('.qo').forEach(b=>{b.disabled=true;if(b.onclick.toString().includes("'"+correct+"'"))b.classList.add('ok');if(b.onclick.toString().includes("'"+chosen+"'")&&chosen!==correct)b.classList.add('no');});if(chosen===correct)qState.score++;setTimeout(()=>{qState.idx++;showQ();},700);}
+
+// ===================== READ MODULE =====================
+let articleSentences=[];
+let shadowIdx=0;
+let shadowMode=false;
+let mediaRecorder=null;
+let recChunks=[];
+let isRecording=false;
+let audioSpeeds=[0.6,0.75,1,1.25];
+let speedIdx=2;
+let wpopCurrentWord='';
+let wpopCurrentSentence='';
+
+const SAMPLE_TEXT=`Die Bundesregierung hat heute ein neues Klimaschutzpaket vorgestellt. Bundeswirtschaftsminister Robert Habeck erklärte, dass Deutschland bis 2045 klimaneutral sein werde. Das Paket umfasst Investitionen in Höhe von 40 Milliarden Euro in erneuerbare Energien.
+
+Besonders im Fokus stehen Solarenergie und Windkraft. Die Regierung plant außerdem, den öffentlichen Nahverkehr deutlich auszubauen. Millionen Bürgerinnen und Bürger sollen von günstigeren Tickets profitieren.
+
+Kritiker bemängeln jedoch, dass die Maßnahmen nicht weit genug gehen. Umweltschutzorganisationen fordern schnellere und entschlossenere Schritte. Die Opposition im Bundestag bezeichnete das Paket als unzureichend.`;
+
+function loadSample(){
+  document.getElementById('read-text-inp').value=SAMPLE_TEXT;
+  document.getElementById('read-title-inp').value='Bundesregierung stellt neues Klimaschutzpaket vor';
+}
+
+function loadArticle(){
+  const text=document.getElementById('read-text-inp').value.trim();
+  if(!text){alert('Please paste some German text first');return;}
+  const title=document.getElementById('read-title-inp').value.trim()||'Article';
+  const audioUrl=document.getElementById('read-audio-url').value.trim();
+
+  // Split into sentences (handle . ! ? with caps following)
+  articleSentences=splitSentences(text);
+
+  // Setup audio if provided
+  const ap=document.getElementById('audio-player');
+  if(audioUrl){
+    document.getElementById('main-audio').src=audioUrl;
+    ap.style.display='flex';
+    setupAudioEvents();
+  } else {
+    ap.style.display='none';
+  }
+
+  // Render
+  document.getElementById('read-title-display').textContent=title;
+  document.getElementById('read-input-card').style.display='none';
+  document.getElementById('read-article').style.display='block';
+  document.getElementById('shadow-panel').style.display='none';
+  shadowMode=false;
+  document.getElementById('shadow-toggle-btn').textContent='🎙 Enter shadowing mode';
+  renderArticleBody(text);
+  updateReadStats();
+}
+
+function splitSentences(text){
+  // Split on . ! ? followed by space+capital or end of string
+  const raw=text.replace(/([.!?])\s+(?=[A-ZÄÖÜ])/g,'$1\n').split('\n');
+  return raw.map(s=>s.trim()).filter(s=>s.length>0);
+}
+
+function renderArticleBody(text){
+  const paragraphs=text.split(/\n+/).filter(p=>p.trim());
+  const knownSet=new Set(db.words.map(w=>w.word.toLowerCase()));
+  // Also add common inflections → base word lookup
+  const knownForms={};
+  db.words.forEach(w=>{
+    knownForms[w.word.toLowerCase()]=w.word;
+    if(w.dictData){
+      const d=w.dictData;
+      if(d.verb_info&&d.verb_info.present){
+        Object.values(d.verb_info.present).forEach(f=>{if(f)knownForms[f.toLowerCase()]=w.word;});
+        if(d.verb_info.past)Object.values(d.verb_info.past).forEach(f=>{if(f)knownForms[f.toLowerCase()]=w.word;});
+      }
+      if(d.noun_info&&d.noun_info.plural)knownForms[d.noun_info.plural.toLowerCase()]=w.word;
+    }
+  });
+
+  let html='';
+  paragraphs.forEach(para=>{
+    // Tokenize: split keeping punctuation attached to words
+    const tokens=para.split(/(\s+)/);
+    let paraHtml='<p>';
+    tokens.forEach(tok=>{
+      if(/^\s+$/.test(tok)){paraHtml+=tok;return;}
+      // Strip leading/trailing punctuation for matching
+      const match=tok.match(/^(["""«»‹›([\-]*)([A-Za-zÄÖÜäöüß]+)([.,!?;:)»›\]\-""]*)$/);
+      if(match){
+        const pre=match[1],word=match[2],post=match[3];
+        const wl=word.toLowerCase();
+        const isKnown=knownSet.has(wl)||knownForms[wl];
+        const sentIdx=getSentenceIndex(para,tok);
+        paraHtml+=`${pre}<span class="rword${isKnown?' known':''}" data-word="${word}" data-sent="${sentIdx}" onclick="onWordClick(event,'${escAttr(word)}','${escAttr(para)}')">${word}</span>${post}`;
+      } else {
+        paraHtml+=tok;
+      }
+    });
+    paraHtml+='</p>';
+    html+=paraHtml;
+  });
+  document.getElementById('article-body').innerHTML=html;
+}
+
+function escAttr(s){return s.replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+function getSentenceIndex(para,token){
+  // Find which sentence this paragraph's token falls in
+  const idx=articleSentences.findIndex(s=>s.includes(para.slice(0,30)));
+  return idx>=0?idx:0;
+}
+
+function updateReadStats(){
+  const body=document.getElementById('article-body');
+  const allWords=body.querySelectorAll('.rword');
+  const known=body.querySelectorAll('.rword.known');
+  const total=allWords.length;
+  const knownCount=known.length;
+  const pct=total>0?Math.round(knownCount/total*100):0;
+  document.getElementById('read-stats').innerHTML=`
+    <div class="read-stat"><strong>${total}</strong> words</div>
+    <div class="read-stat"><strong style="color:#1b5e20;">${knownCount}</strong> known (${pct}%)</div>
+    <div class="read-stat"><strong>${total-knownCount}</strong> to look up</div>
+    <div class="read-stat">${articleSentences.length} sentences</div>`;
+}
+
+// ---- WORD CLICK ----
+async function onWordClick(evt, word, sentence){
+  evt.stopPropagation();
+  wpopCurrentWord=word;
+  wpopCurrentSentence=sentence;
+  const pop=document.getElementById('wpop');
+
+  // Check if already in vocab
+  const existing=db.words.find(w=>w.word.toLowerCase()===word.toLowerCase());
+
+  // Position popup
+  const rect=evt.target.getBoundingClientRect();
+  let top=rect.bottom+window.scrollY+6;
+  let left=rect.left+window.scrollX;
+  pop.style.top=top+'px';
+  pop.style.left=Math.min(left,window.innerWidth-300)+'px';
+
+  if(existing){
+    showWpop(existing.word, existing.pos, existing.en,
+      existing.example||'',
+      `<button class="btn btns" style="background:#e8f5e9;border-color:#4caf50;color:#1b5e20;" disabled>✓ In vocabulary</button>
+       <button class="btn btns" onclick="showDetail('${existing.id}');closeWpop()">View card</button>`);
+    return;
+  }
+
+  // Not in vocab — show loading state
+  showWpop(word,'','Loading...','',
+    `<div class="spin" style="margin:4px;"></div>`);
+
+  if(!getKey()){
+    showWpop(word,'','No API key set — add one in Settings','',
+      `<button class="btn btns btnp" onclick="gv('settings',null);closeWpop()">Go to Settings</button>`);
+    return;
+  }
+
+  try{
+    const raw=await callAI(PROMPT(word));
+    const s=raw.indexOf('{'),e=raw.lastIndexOf('}');
+    if(s===-1)throw new Error('No data');
+    const data=JSON.parse(raw.slice(s,e+1));
+    const pm=POS_META[data.pos]||POS_META.other;
+    const alts=data.en_alt&&data.en_alt.length?' · <em style="color:#888;">'+data.en_alt.slice(0,2).join(', ')+'</em>':'';
+    showWpop(
+      data.word, data.pos,
+      data.en+alts,
+      data.example?(data.example+(data.example_en?' — '+data.example_en:'')):'',
+      `<button class="btn btns btnp" onclick="saveFromRead(${JSON.stringify(data).replace(/"/g,'&quot;')})">+ Add to vocabulary</button>
+       <button class="btn btns" onclick="closeWpop()">Dismiss</button>`
+    );
+  }catch(err){
+    showWpop(word,'','Error: '+err.message,'',`<button class="btn btns" onclick="closeWpop()">Close</button>`);
+  }
+}
+
+function showWpop(word,pos,en,ex,btns){
+  const pop=document.getElementById('wpop');
+  const pm=POS_META[pos]||{label:'',cls:'anone'};
+  document.getElementById('wpop-word').textContent=word;
+  const posEl=document.getElementById('wpop-pos');
+  posEl.textContent=pm.label;posEl.className='wpop-pos ab '+pm.cls;
+  document.getElementById('wpop-en').innerHTML=en;
+  const exEl=document.getElementById('wpop-ex');
+  if(ex){exEl.textContent=ex;exEl.style.display='';}else{exEl.style.display='none';}
+  document.getElementById('wpop-btns').innerHTML=btns;
+  pop.classList.add('show');
+}
+function closeWpop(){document.getElementById('wpop').classList.remove('show');}
+document.addEventListener('click',e=>{if(!e.target.closest('#wpop')&&!e.target.closest('.rword'))closeWpop();});
+
+function saveFromRead(data){
+  if(typeof data==='string')data=JSON.parse(data);
+  if(db.words.find(w=>w.word.toLowerCase()===data.word.toLowerCase())){
+    closeWpop();showToast('Already in vocabulary');return;
+  }
+  const now=Date.now();
+  const w={id:'w'+now,word:data.word,en:data.en,pos:data.pos||'other',
+    article:data.noun_info&&data.noun_info.article||'',
+    example:wpopCurrentSentence||data.example||'',
+    note:'From article reading',
+    synonyms:data.synonyms||[],antonyms:data.antonyms||[],related:data.related||[],
+    stage:0,nextReview:now,mastered:false,diff:0,reviews:[],dictData:data,addedAt:now};
+  db.words.push(w);unsavedCount++;updateSaveBanner();
+  autoSync();
+  // Mark word as known in article
+  document.querySelectorAll(`.rword[data-word="${data.word}"]`).forEach(el=>el.classList.add('known','saving'));
+  setTimeout(()=>document.querySelectorAll('.rword.saving').forEach(el=>el.classList.remove('saving')),600);
+  updateReadStats();
+  closeWpop();
+  showToast('✓ '+data.word+' added to vocabulary');
+  renderHome();
+}
+
+// ---- AUDIO ----
+function setupAudioEvents(){
+  const audio=document.getElementById('main-audio');
+  audio.addEventListener('timeupdate',()=>{
+    if(!audio.duration)return;
+    const pct=audio.currentTime/audio.duration*100;
+    document.getElementById('audio-prog').style.width=pct+'%';
+    document.getElementById('audio-time').textContent=fmtTime(audio.currentTime)+' / '+fmtTime(audio.duration);
+  });
+  audio.addEventListener('ended',()=>{document.getElementById('play-btn').textContent='▶';});
+  audio.addEventListener('play',()=>{document.getElementById('play-btn').textContent='⏸';});
+  audio.addEventListener('pause',()=>{document.getElementById('play-btn').textContent='▶';});
+}
+function fmtTime(s){const m=Math.floor(s/60);return m+':'+(Math.floor(s%60)+'').padStart(2,'0');}
+function togglePlay(){
+  const a=document.getElementById('main-audio');
+  a.paused?a.play():a.pause();
+}
+function seekAudio(e){
+  const a=document.getElementById('main-audio');
+  if(!a.duration)return;
+  const wrap=document.getElementById('prog-wrap');
+  const pct=e.offsetX/wrap.offsetWidth;
+  a.currentTime=pct*a.duration;
+}
+function cycleSpeed(){
+  speedIdx=(speedIdx+1)%audioSpeeds.length;
+  const s=audioSpeeds[speedIdx];
+  document.getElementById('main-audio').playbackRate=s;
+  document.getElementById('speed-btn').textContent=s+'×';
+}
+
+// ---- SHADOWING ----
+function toggleShadowMode(){
+  shadowMode=!shadowMode;
+  const panel=document.getElementById('shadow-panel');
+  const btn=document.getElementById('shadow-toggle-btn');
+  if(shadowMode){
+    panel.style.display='block';
+    btn.textContent='✕ Exit shadowing mode';
+    shadowIdx=0;renderShadowSentence();
+  } else {
+    panel.style.display='none';
+    btn.textContent='🎙 Enter shadowing mode';
+    stopRecording();
+  }
+}
+
+function renderShadowSentence(){
+  if(!articleSentences.length)return;
+  shadowIdx=Math.max(0,Math.min(shadowIdx,articleSentences.length-1));
+  document.getElementById('shadow-sentence-text').textContent=articleSentences[shadowIdx];
+  document.getElementById('shadow-idx').textContent=(shadowIdx+1)+' / '+articleSentences.length;
+  document.getElementById('playback-row').style.display='none';
+  document.getElementById('rec-status').textContent='';
+  const hasAudio=document.getElementById('main-audio').src&&document.getElementById('main-audio').src!==window.location.href;
+  document.getElementById('play-original-btn').style.display=hasAudio?'':'none';
+}
+function prevShadowSentence(){shadowIdx--;renderShadowSentence();}
+function nextShadowSentence(){shadowIdx++;renderShadowSentence();}
+
+function playOriginalSegment(){
+  // Play whole audio from current position — without timestamps we just play from current
+  const a=document.getElementById('main-audio');
+  a.play();
+  document.getElementById('rec-status').textContent='Playing...';
+  // Auto-pause after ~6 seconds (rough sentence length)
+  setTimeout(()=>{if(!a.paused){a.pause();document.getElementById('rec-status').textContent='Paused. Now record yourself!';}},6000);
+}
+
+async function toggleRecording(){
+  if(isRecording){stopRecording();return;}
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    recChunks=[];
+    mediaRecorder=new MediaRecorder(stream);
+    mediaRecorder.ondataavailable=e=>{if(e.data.size>0)recChunks.push(e.data);};
+    mediaRecorder.onstop=()=>{
+      const blob=new Blob(recChunks,{type:'audio/webm'});
+      const url=URL.createObjectURL(blob);
+      const pa=document.getElementById('playback-audio');
+      pa.src=url;
+      document.getElementById('playback-row').style.display='flex';
+      document.getElementById('rec-status').textContent='Recorded! Listen back below.';
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mediaRecorder.start();
+    isRecording=true;
+    document.getElementById('rec-btn').classList.add('recording');
+    document.getElementById('rec-label').textContent='Stop';
+    document.getElementById('rec-status').textContent='Recording...';
+  }catch(err){
+    alert('Microphone access denied. Please allow microphone access in your browser.');
+  }
+}
+function stopRecording(){
+  if(mediaRecorder&&isRecording){mediaRecorder.stop();}
+  isRecording=false;
+  document.getElementById('rec-btn').classList.remove('recording');
+  document.getElementById('rec-label').textContent='Record';
+}
+
+// ===================== NOTES MODULE =====================
+let currentNoteId = null;
+let editorTags = [];
+
+function initNotes(){
+  if(!db.notes) db.notes = [];
+}
+
+function gvNotes(){
+  initNotes();
+  renderNotes();
+  updateTagFilter();
+}
+
+function renderNotes(){
+  initNotes();
+  const q = (document.getElementById('notes-search').value||'').toLowerCase();
+  const tf = document.getElementById('notes-filter-tag').value;
+  let notes = [...db.notes].sort((a,b)=>b.updatedAt-a.updatedAt);
+  if(q) notes = notes.filter(n=>(n.title||'').toLowerCase().includes(q)||(n.body||'').toLowerCase().includes(q));
+  if(tf) notes = notes.filter(n=>(n.tags||[]).includes(tf));
+  const el = document.getElementById('notes-list-el');
+  if(!notes.length){
+    el.innerHTML='<div class="emp">'+(db.notes.length?'No notes match your search.':'No notes yet — click <strong>+ New note</strong> to start writing.')+'</div>';
+    return;
+  }
+  el.innerHTML = notes.map(n=>{
+    const preview = stripHtml(n.body||'').slice(0,120);
+    const date = new Date(n.updatedAt).toLocaleDateString('en',{year:'numeric',month:'short',day:'numeric'});
+    const wc = countWords(n.body||'');
+    const tags = (n.tags||[]).map(t=>`<span class="note-tag">${t}</span>`).join('');
+    return`<div class="note-card" onclick="openNote('${n.id}')">
+      <div class="note-card-title">${n.title||'<span style="color:#bbb;font-weight:400;">Untitled</span>'}</div>
+      <div class="note-card-meta">
+        <span>${date}</span>
+        <span>·</span><span>${wc} words</span>
+        ${tags?`<span>·</span>${tags}`:''}
+      </div>
+      <div class="note-card-preview">${preview||'<em style="color:#bbb;">Empty note</em>'}</div>
+    </div>`;
+  }).join('');
+}
+
+function updateTagFilter(){
+  initNotes();
+  const allTags = [...new Set(db.notes.flatMap(n=>n.tags||[]))].sort();
+  const sel = document.getElementById('notes-filter-tag');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">All tags</option>' + allTags.map(t=>`<option value="${t}"${t===cur?' selected':''}>${t}</option>`).join('');
+}
+
+function newNote(){
+  currentNoteId = null;
+  editorTags = [];
+  document.getElementById('editor-title').value = '';
+  document.getElementById('editor-content').innerHTML = '';
+  document.getElementById('editor-delete-btn').style.display = 'none';
+  document.getElementById('editor-date').textContent = new Date().toLocaleDateString('en',{year:'numeric',month:'long',day:'numeric'});
+  renderEditorTags();
+  updateWordCount();
+  showEditor();
+}
+
+function openNote(id){
+  initNotes();
+  const n = db.notes.find(x=>x.id===id);
+  if(!n) return;
+  currentNoteId = id;
+  editorTags = [...(n.tags||[])];
+  document.getElementById('editor-title').value = n.title||'';
+  document.getElementById('editor-content').innerHTML = n.body||'';
+  document.getElementById('editor-delete-btn').style.display = '';
+  document.getElementById('editor-date').textContent = new Date(n.updatedAt).toLocaleDateString('en',{year:'numeric',month:'long',day:'numeric'});
+  renderEditorTags();
+  updateWordCount();
+  showEditor();
+}
+
+function showEditor(){
+  document.getElementById('editor-wrap').style.display = 'flex';
+  document.getElementById('editor-content').focus();
+}
+
+function closeEditor(){
+  document.getElementById('editor-wrap').style.display = 'none';
+  renderNotes();
+  updateTagFilter();
+}
+
+function saveNote(){
+  initNotes();
+  const title = document.getElementById('editor-title').value.trim();
+  const body = document.getElementById('editor-content').innerHTML;
+  const now = Date.now();
+  if(currentNoteId){
+    const n = db.notes.find(x=>x.id===currentNoteId);
+    if(n){ n.title=title; n.body=body; n.tags=[...editorTags]; n.updatedAt=now; }
+  } else {
+    const n = {id:'n'+now,title,body,tags:[...editorTags],createdAt:now,updatedAt:now};
+    db.notes.push(n);
+    currentNoteId = n.id;
+    document.getElementById('editor-delete-btn').style.display = '';
+  }
+  unsavedCount++;
+  updateSaveBanner();
+  showToast('Note saved');
+  renderNotes();
+  updateTagFilter();
+  autoSync();
+}
+
+function deleteCurrentNote(){
+  if(!currentNoteId) return;
+  if(!confirm('Delete this note? This cannot be undone.')) return;
+  db.notes = db.notes.filter(n=>n.id!==currentNoteId);
+  unsavedCount++;
+  updateSaveBanner();
+  closeEditor();
+  showToast('Note deleted');
+  autoSync();
+}
+
+// ---- EDITOR HELPERS ----
+function execCmd(cmd, val){
+  document.getElementById('editor-content').focus();
+  document.execCommand(cmd, false, val||null);
+  updateWordCount();
+}
+
+function updateWordCount(){
+  const text = stripHtml(document.getElementById('editor-content').innerHTML||'');
+  const wc = countWords(text);
+  document.getElementById('editor-wordcount').textContent = wc+' word'+(wc!==1?'s':'');
+}
+
+function countWords(html){
+  const text = stripHtml(html);
+  return text.trim() ? text.trim().split(/\s+/).length : 0;
+}
+
+function stripHtml(html){
+  const d = document.createElement('div');
+  d.innerHTML = html;
+  return d.textContent||d.innerText||'';
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const ec = document.getElementById('editor-content');
+  if(ec){
+    ec.addEventListener('input', updateWordCount);
+    ec.addEventListener('keydown', e=>{
+      // Ctrl+S / Cmd+S to save
+      if((e.ctrlKey||e.metaKey) && e.key==='s'){ e.preventDefault(); saveNote(); }
+    });
+    // Placeholder behaviour
+    ec.addEventListener('focus',()=>ec.classList.add('focused'));
+    ec.addEventListener('blur',()=>ec.classList.remove('focused'));
+  }
+});
+
+// ---- IMAGE INSERT ----
+function insertImage(){
+  // Show options: URL or local file
+  const choice = confirm('Click OK to insert image from your computer.\nClick Cancel to insert from a URL.');
+  if(choice){
+    document.getElementById('img-file-inp').click();
+  } else {
+    const url = prompt('Image URL:');
+    if(url) execCmd('insertImage', url);
+  }
+}
+
+function handleImageFile(evt){
+  const file = evt.target.files[0];
+  if(!file) return;
+  if(!file.type.startsWith('image/')){ alert('Please select an image file'); return; }
+  if(file.size > 5*1024*1024){ alert('Image too large (max 5MB). Please resize first.'); return; }
+  const reader = new FileReader();
+  reader.onload = e=>{
+    document.getElementById('editor-content').focus();
+    document.execCommand('insertImage', false, e.target.result);
+    // Style the inserted image
+    setTimeout(()=>{
+      document.querySelectorAll('#editor-content img:not([data-styled])').forEach(img=>{
+        img.setAttribute('data-styled','1');
+        img.style.maxWidth='100%';
+        img.style.borderRadius='8px';
+        img.style.margin='.5rem 0';
+        img.style.display='block';
+        img.style.cursor='pointer';
+        img.title='Click to resize';
+        img.onclick=()=>resizeImage(img);
+      });
+    }, 100);
+  };
+  reader.readAsDataURL(file);
+  evt.target.value=''; // reset so same file can be re-selected
+}
+
+function resizeImage(img){
+  const sizes=['25%','50%','75%','100%'];
+  const cur = img.style.width||'100%';
+  const idx = sizes.indexOf(cur);
+  img.style.width = sizes[(idx+1)%sizes.length];
+  showToast('Image: '+img.style.width);
+}
+
+// ---- LINK ----
+function insertLink(){
+  const sel = window.getSelection();
+  const selectedText = sel ? sel.toString() : '';
+  const url = prompt('URL:', 'https://');
+  if(!url) return;
+  if(selectedText){
+    execCmd('createLink', url);
+  } else {
+    const text = prompt('Link text:', url);
+    if(!text) return;
+    document.getElementById('editor-content').focus();
+    document.execCommand('insertHTML', false, `<a href="${url}" target="_blank">${text}</a>`);
+  }
+}
+
+// ---- TAGS ----
+function handleTagKey(e){
+  if(e.key==='Enter' || e.key===','){
+    e.preventDefault();
+    const v = e.target.value.trim().replace(/,/g,'');
+    if(v && !editorTags.includes(v)){ editorTags.push(v); renderEditorTags(); }
+    e.target.value = '';
+  }
+}
+
+function renderEditorTags(){
+  const el = document.getElementById('editor-tags-display');
+  el.innerHTML = editorTags.map((t,i)=>
+    `<span class="note-tag">${t}<span class="note-tag-rm" onclick="removeEditorTag(${i})">×</span></span>`
+  ).join('');
+}
+
+function removeEditorTag(i){
+  editorTags.splice(i,1);
+  renderEditorTags();
+}
+
+// Placeholder CSS via JS (contenteditable doesn't support :placeholder)
+const placeholderStyle = document.createElement('style');
+placeholderStyle.textContent = `.editor-content:empty:not(.focused)::before{content:attr(data-placeholder);color:#bbb;pointer-events:none;font-style:italic;}`;
+document.head.appendChild(placeholderStyle);
+</script>
+</body>
+</html>
